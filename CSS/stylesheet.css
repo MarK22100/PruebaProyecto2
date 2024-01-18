@@ -19,3 +19,6 @@
       text-decoration: none; /* Quitar subrayado por defecto */
       color: #fcfcfc; /* Color del texto por defecto */
   }
+
+  .btn-custom-hoveer:hover {background-color: #ff5e00;
+    border: #000000;}
