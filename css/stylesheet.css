@@ -1,12 +1,12 @@
     /* Estilo básico para el enlace */
-    .enlace-agrandable {
+    .link-transition {
         display: inline-block;
         padding: 10px;
         transition: transform 0.3s; /* Transición suave para el efecto */
       }
   
       /* Estilo adicional cuando el cursor está sobre el enlace */
-      .enlace-agrandable:hover {
+      .link-transition:hover {
         transform: scale(1.2); /* Aumenta el tamaño al 120% */
     
       }
@@ -19,6 +19,8 @@
       text-decoration: none; /* Quitar subrayado por defecto */
       color: #fcfcfc; /* Color del texto por defecto */
   }
-  .card-prod{
-    max-width: 14em;
-  }
+
+  .btn-custom-hoveer:hover {background-color: #ff5e00;
+    border: #000000;}
+
+    
