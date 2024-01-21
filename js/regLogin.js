@@ -4,6 +4,7 @@ import { validateInputsSignUp, validateSignIn } from "./hellpers.js";
 let formSignUp= document.getElementById('formSignUp');
 let adminUserBtn = document.getElementById('adminUserBtn');
 let adminProdBtn = document.getElementById('adminProdBtn');
+let prodSelected = document.getElementById('prodSelected');
 let btnSignIn = document.getElementById('btnSignIn');
 let btnSignOut = document.getElementById('btnSignOut');
 
@@ -105,7 +106,7 @@ window.signIn = function(){
                     return v.emailUser === emailSignIn.value && v.passUser === passSignIn.value;
                 })) {
                 sessionStorage.setItem('userSesion',JSON.stringify(userSesion))
-                adminProdBtn.className = "nav-link"
+                prodSelected.className = "nav-link"
                 Swal.fire({
                     icon: "success",
                     text: "Inicio de sesion exitoso!",
@@ -121,7 +122,7 @@ window.signIn = function(){
                     adminUserBtn.className = "nav-link"
                     adminProdBtn.className = "nav-link"
                     btnSignIn.className = "d-none"
-                    btnSignOut.className="loginbtn ms-auto"
+                    btnSignOut.className="btn btnSignOut"
                     Swal.fire({
                         icon: "success",
                         text: "Inicio de sesion exitoso!",
@@ -213,12 +214,12 @@ window.repPass = function(){
 window.passSg = function(){
     if (showPassSignIn == true) {
         document.getElementById('passSignIng').type='password';
-        document.getElementById('repPassIcon').src='/src/eye.svg';
+        document.getElementById('passSignIngIcon').src='/src/eye.svg';
         showPassSignIn = false;
     }
     else{
         document.getElementById('passSignIng').type='text';
-        document.getElementById('repPassIcon').src='/src/eye-slash.svg';
+        document.getElementById('passSignIngIcon').src='/src/eye-slash.svg';
         showPassSignIn = true;
     }
 }
