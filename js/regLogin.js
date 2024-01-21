@@ -1,4 +1,4 @@
-import { validateInputsSignUp, validateSignIn } from "./hellpers.js";
+import {validateInputsSignUp, validateSignIn } from "./hellpers.js";
 
 //Elements
 let formSignUp= document.getElementById('formSignUp');
@@ -23,14 +23,18 @@ let repPassInp=document.getElementById('repPassInput')
 let emailSignIn = document.getElementById('emailSignIn');
 let passSignIn = document.getElementById('passSignIng');
 
-
-
-
 //Buttons
 const container = document.getElementById('container');
 const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
-const btnSignUp = document.getElementById('btn_signUp');
+ checkSesion()
+export function checkSesion(){
+    const user = JSON.parse(sessionStorage.getItem('userSesion'));
+    if (user!==null) {
+        document.getElementById('btnSignIn').className='d-none';
+        document.getElementById('btnSignOut').className='btn btnSignOut';
+    }
+    }
 
 // Función para verificar si el usuario administrador ya existe
 function adminExists(usersAdmin) {
@@ -105,8 +109,9 @@ window.signIn = function(){
                 if (userReg.some((v)=>{
                     return v.emailUser === emailSignIn.value && v.passUser === passSignIn.value;
                 })) {
-                sessionStorage.setItem('userSesion',JSON.stringify(userSesion))
-                prodSelected.className = "nav-link"
+                sessionStorage.setItem('userSesion',JSON.stringify(userSesion));
+                prodSelected.className='nav-link';
+                checkSesion()
                 Swal.fire({
                     icon: "success",
                     text: "Inicio de sesion exitoso!",
@@ -114,15 +119,16 @@ window.signIn = function(){
                   setTimeout(()=>{
                     $('#signInModal').modal('hide')
                     },1500);
+                    
                 }
                 else if(usersAdmin.some((v)=>{
                     return v.emailUser === emailSignIn.value && v.passUser === passSignIn.value
                 })){
-                    sessionStorage.setItem('userSesion',JSON.stringify(userSesion))
-                    adminUserBtn.className = "nav-link"
-                    adminProdBtn.className = "nav-link"
-                    btnSignIn.className = "d-none"
-                    btnSignOut.className="btn btnSignOut"
+                    sessionStorage.setItem('userSesion',JSON.stringify(userSesion));
+                    prodSelected.className='nav-link';
+                    adminProdBtn.className='nav-link';
+                    adminUserBtn.className='nav-link';
+                    checkSesion()
                     Swal.fire({
                         icon: "success",
                         text: "Inicio de sesion exitoso!",
@@ -130,7 +136,6 @@ window.signIn = function(){
                     setTimeout(()=>{
                         $('#signInModal').modal('hide')
                     },1500);
-                    
                 }
                 else{
                     Swal.fire({
@@ -147,10 +152,6 @@ window.signIn = function(){
     }
 }
 
-//Funcion Para habilitar btn Admin PROD, USERS
-function checkSesionGuest(){
-
-}
 // Función para crear el usuario administrador
 function createAdmin() {
 
