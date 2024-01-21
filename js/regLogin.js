@@ -27,7 +27,9 @@ let passSignIn = document.getElementById('passSignIng');
 const container = document.getElementById('container');
 const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
- checkSesion()
+
+checkSesion()
+ 
 export function checkSesion(){
     const user = JSON.parse(sessionStorage.getItem('userSesion'));
     if (user!==null) {
