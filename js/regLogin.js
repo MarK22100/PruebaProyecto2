@@ -29,7 +29,6 @@ const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
 
 checkSesion()
- 
 export function checkSesion(){
     const user = JSON.parse(sessionStorage.getItem('userSesion'));
     if (user!==null) {
