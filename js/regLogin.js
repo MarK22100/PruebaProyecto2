@@ -147,10 +147,6 @@ window.signIn = function(){
     }
 }
 
-//Funcion Para habilitar btn Admin PROD, USERS
-function checkSesionGuest(){
-
-}
 // Función para crear el usuario administrador
 function createAdmin() {
 
