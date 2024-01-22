@@ -1,26 +1,53 @@
     /* Estilo básico para el enlace */
-    .link-transition {
-        display: inline-block;
-        padding: 10px;
-        transition: transform 0.3s; /* Transición suave para el efecto */
-      }
-  
-      /* Estilo adicional cuando el cursor está sobre el enlace */
-      .link-transition:hover {
-        transform: scale(1.2); /* Aumenta el tamaño al 120% */
+        .link-transition {
+          display: inline-block;
+          padding: 10px;
+          transition: transform 0.3s;
+          /* Transición suave para el efecto */
+        }
     
-      }
-
-      a:hover {
-        background-color: #ff5e00;
-        border: #ff5e00; /* Cambia el color de fondo al pasar el cursor */
-    }
-    a {
-      text-decoration: none; /* Quitar subrayado por defecto */
-      color: #fcfcfc; /* Color del texto por defecto */
-  }
+        /* Estilo adicional cuando el cursor está sobre el enlace */
+        .link-transition:hover {
+          transform: scale(1.2);
+          /* Aumenta el tamaño al 120% */
+    
+        }
+    
+        a:hover {
+          background-color: #ff5e00;
+          border: #ff5e00;
+          cursor: pointer;
+          /* Cambia el color de fondo al pasar el cursor */
+        }
+    
+        a {
+          text-decoration: none;
+          /* Quitar subrayado por defecto */
+          color: #fcfcfc;
+          /* Color del texto por defecto */
+        }
+        .nav-item a{
+          padding: 10px;
+        }
+        .nav-link{
+          border-radius:5px 20px;;
+          
+        }
+        .btnSignIn,
+        .btnSignOut{
+          color: #fcfcfc;
+          font-weight: 600;
+          background-color: #ff5e00;
+    
+        }
+        .btnSignOut:hover,
+        .btnSignIn:hover{
+          color: #ff5e00;
+          background-color: #fcfcfc;
+        }
+        .list-unstyled li a{
+          padding: 10px;
+        }
 
   .btn-custom-hoveer:hover {background-color: #ff5e00;
     border: #000000;}
-
-    
