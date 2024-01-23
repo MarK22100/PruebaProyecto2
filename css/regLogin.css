@@ -19,7 +19,6 @@
 .containerModal{
     display: flex;
     justify-content: center;
-    background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
@@ -198,6 +197,7 @@
     display: inline-block;
     position: relative;
     border: 1px solid #333;
+    background-color: #fff;
    
 }
 .password:focus{

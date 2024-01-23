@@ -1,9 +1,10 @@
-import { validateInputsSignUp, validateSignIn } from "./hellpers.js";
+import {validateInputsSignUp, validateSignIn } from "./hellpers.js";
 
 //Elements
 let formSignUp= document.getElementById('formSignUp');
 let adminUserBtn = document.getElementById('adminUserBtn');
 let adminProdBtn = document.getElementById('adminProdBtn');
+let prodSelected = document.getElementById('prodSelected');
 let btnSignIn = document.getElementById('btnSignIn');
 let btnSignOut = document.getElementById('btnSignOut');
 
@@ -22,14 +23,20 @@ let repPassInp=document.getElementById('repPassInput')
 let emailSignIn = document.getElementById('emailSignIn');
 let passSignIn = document.getElementById('passSignIng');
 
-
-
-
 //Buttons
 const container = document.getElementById('container');
 const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
-const btnSignUp = document.getElementById('btn_signUp');
+
+checkSesion()
+ 
+export function checkSesion(){
+    const user = JSON.parse(sessionStorage.getItem('userSesion'));
+    if (user!==null) {
+        document.getElementById('btnSignIn').className='d-none';
+        document.getElementById('btnSignOut').className='btn btnSignOut';
+    }
+    }
 
 // Función para verificar si el usuario administrador ya existe
 function adminExists(usersAdmin) {
@@ -104,8 +111,9 @@ window.signIn = function(){
                 if (userReg.some((v)=>{
                     return v.emailUser === emailSignIn.value && v.passUser === passSignIn.value;
                 })) {
-                sessionStorage.setItem('userSesion',JSON.stringify(userSesion))
-                adminProdBtn.className = "nav-link"
+                sessionStorage.setItem('userSesion',JSON.stringify(userSesion));
+                prodSelected.className='nav-link';
+                checkSesion()
                 Swal.fire({
                     icon: "success",
                     text: "Inicio de sesion exitoso!",
@@ -113,15 +121,16 @@ window.signIn = function(){
                   setTimeout(()=>{
                     $('#signInModal').modal('hide')
                     },1500);
+                    
                 }
                 else if(usersAdmin.some((v)=>{
                     return v.emailUser === emailSignIn.value && v.passUser === passSignIn.value
                 })){
-                    sessionStorage.setItem('userSesion',JSON.stringify(userSesion))
-                    adminUserBtn.className = "nav-link"
-                    adminProdBtn.className = "nav-link"
-                    btnSignIn.className = "d-none"
-                    btnSignOut.className="loginbtn ms-auto"
+                    sessionStorage.setItem('userSesion',JSON.stringify(userSesion));
+                    prodSelected.className='nav-link';
+                    adminProdBtn.className='nav-link';
+                    adminUserBtn.className='nav-link';
+                    checkSesion()
                     Swal.fire({
                         icon: "success",
                         text: "Inicio de sesion exitoso!",
@@ -129,7 +138,6 @@ window.signIn = function(){
                     setTimeout(()=>{
                         $('#signInModal').modal('hide')
                     },1500);
-                    
                 }
                 else{
                     Swal.fire({
@@ -145,6 +153,7 @@ window.signIn = function(){
           });
     }
 }
+
 // Función para crear el usuario administrador
 function createAdmin() {
 
@@ -182,6 +191,7 @@ function LimpiaFormulario(){
 let showPass = false;
 let showRepPass = false;
 let showPassSignIn = false;
+
 window.pass = function(){
 
     if (showPass == true) {
@@ -213,12 +223,12 @@ window.repPass = function(){
 window.passSg = function(){
     if (showPassSignIn == true) {
         document.getElementById('passSignIng').type='password';
-        document.getElementById('repPassIcon').src='/src/eye.svg';
+        document.getElementById('passSignIngIcon').src='/src/eye.svg';
         showPassSignIn = false;
     }
     else{
         document.getElementById('passSignIng').type='text';
-        document.getElementById('repPassIcon').src='/src/eye-slash.svg';
+        document.getElementById('passSignIngIcon').src='/src/eye-slash.svg';
         showPassSignIn = true;
     }
 }
