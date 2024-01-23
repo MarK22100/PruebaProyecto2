@@ -31,12 +31,21 @@ const loginBtn = document.getElementById('login');
 checkSesion()
  
 export function checkSesion(){
+    const adminSignIn = JSON.parse(sessionStorage.getItem('userSesion'))
+    if (adminSignIn.some(v)) {
+        
+    }
     const user = JSON.parse(sessionStorage.getItem('userSesion'));
     if (user!==null) {
         document.getElementById('btnSignIn').className='d-none';
         document.getElementById('btnSignOut').className='btn btnSignOut';
     }
     }
+
+//Funcion para verificar si se inicio sesion con userAdmin
+function signInAdmin(){
+    return 
+}
 
 // Función para verificar si el usuario administrador ya existe
 function adminExists(usersAdmin) {
@@ -153,7 +162,6 @@ window.signIn = function(){
           });
     }
 }
-
 // Función para crear el usuario administrador
 function createAdmin() {
 
