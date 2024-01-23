@@ -1,0 +1,8 @@
+.img{
+    background-color: black;
+    background-image: url(/img/error404.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 587px;
+    width: 1918px;
+}
