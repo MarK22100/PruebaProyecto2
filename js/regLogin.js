@@ -29,28 +29,38 @@ const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
 
 checkSesion()
- 
+
 export function checkSesion(){
     const adminSignIn = JSON.parse(sessionStorage.getItem('userSesion'))
-    if (adminSignIn.some(v)) {
+
+    if (adminSignIn!=null) {
+        if (adminSignIn.emailUser === "admin@example.com") {
+            document.getElementById('btnSignIn').className='d-none';
+            document.getElementById('btnSignOut').className='btn btnSignOut';
+            prodSelected.className='nav-link';
+            adminProdBtn.className='nav-link';
+            adminUserBtn.className='nav-link';
         
-    }
+            }
+            else{
+            prodSelected.className='nav-link';
+            document.getElementById('btnSignIn').className='d-none';
+            document.getElementById('btnSignOut').className='btn btnSignOut';
+            }
+        }
+        
     const user = JSON.parse(sessionStorage.getItem('userSesion'));
     if (user!==null) {
         document.getElementById('btnSignIn').className='d-none';
         document.getElementById('btnSignOut').className='btn btnSignOut';
     }
     }
-
-//Funcion para verificar si se inicio sesion con userAdmin
-function signInAdmin(){
-    return 
-}
-
 // Función para verificar si el usuario administrador ya existe
 function adminExists(usersAdmin) {
     return usersAdmin.some(user => user.nameUser === 'admin');
 }
+
+
 
 registerBtn.addEventListener('click', () => {
     container.classList.add("active");
@@ -136,9 +146,6 @@ window.signIn = function(){
                     return v.emailUser === emailSignIn.value && v.passUser === passSignIn.value
                 })){
                     sessionStorage.setItem('userSesion',JSON.stringify(userSesion));
-                    prodSelected.className='nav-link';
-                    adminProdBtn.className='nav-link';
-                    adminUserBtn.className='nav-link';
                     checkSesion()
                     Swal.fire({
                         icon: "success",
@@ -168,6 +175,7 @@ function createAdmin() {
     // Verifica si el usuario administrador ya existe
     if (!adminExists(usersAdmin)) {
         let usersAdmin = JSON.parse(localStorage.getItem('usersAdmin')) || [];
+       
         // Crea el usuario administrador
         const admin = {
             nameUser: 'admin',
