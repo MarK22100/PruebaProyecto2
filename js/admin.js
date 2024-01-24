@@ -7,25 +7,15 @@
  * Descripción
  * Stock
  */
-import {
-    validarInputRequerido,
-    validarInputPrecio,
-    validarInputCategoria,
-    validarInputUrl,
-    validarInputDescripcion,
-    validarInputStock,
-    validarTodo,
-    ObtenerCodigoAleatorio,
-    getRoleUserLog
-  } from "./hellpers.js";
-  
-import { checkAdmin } from "./user.js";
+
 
 let adminLi=document.getElementById('adminLi');
-checkAdmin(adminLi);
+
+
 
 let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
 let bodyTabla = document.querySelector("tbody");
+let inputCodigo = document.getElementById("codigo");
 let inputNombre = document.getElementById("nombre");
 let inputPrecio = document.getElementById("precio");
 let inputCategoria = document.getElementById("categoria");
@@ -34,14 +24,15 @@ let inputDescripcion = document.getElementById("descripcion");
 let inputStock = document.getElementById("stock");
 console.log(bodyTabla);
 let form = document.getElementById('formProductos');
-inputCodigo.value = ObtenerCodigoAleatorio();
+
+
 
 form.addEventListener("submit", GuardarProducto);
 
-inputCodigo.addEventListener("blur", () => {
-validarInputRequerido(inputCodigo);
-});
-
+// inputCodigo.addEventListener("blur", () => {
+// validarInputRequerido(inputCodigo);
+// });
+/*
 inputNombre.addEventListener("blur", () => {
 validarInputRequerido(inputNombre);
 });
@@ -65,6 +56,7 @@ validarInputPrecio(inputPrecio);
 inputImgUrl.addEventListener("blur", () => {
 validarInputUrl(inputImgUrl);
 });
+*/
 
 ListarProductos();
 
@@ -72,17 +64,7 @@ let esEdicion = false;
 
 function GuardarProducto(e) {
 e.preventDefault();
-if (
-    validarTodo(
-    inputCodigo,
-    inputNombre,
-    inputDescripcion,
-    inputCategoria,
-    inputStock,
-    inputPrecio,
-    inputImgUrl
-    )
-) {
+if (inputDescripcion!== null) {
     CrearProducto();
 } else {
     Swal.fire({
@@ -118,7 +100,7 @@ ListarProductos();
 window.LimpiarFormulario = function () {
 form.reset();
 inputCodigo.className = "form-control";
-inputCodigo.value = ObtenerCodigoAleatorio();
+inputCodigo.className = "form-control";
 inputNombre.className = "form-control";
 inputDescripcion.className = "form-control";
 inputCategoria.className = "form-control";
@@ -131,7 +113,7 @@ GuardarLocalStorage();
 function GuardarLocalStorage() {
 localStorage.setItem("productos", JSON.stringify(arrayProductos));
 }
-
+/*
 function ValidateRole(){
 console.log('Entró en checkAdmin');
 const role=getRoleUserLog();
@@ -140,7 +122,7 @@ if(role!=='Admin'){
     window.location.replace('/index.html');
 };  
 };
-
+*/
 function ListarProductos() {
 bodyTabla.innerHTML = "";
 arrayProductos.forEach((element) => {
@@ -159,5 +141,5 @@ arrayProductos.forEach((element) => {
     </tr>`;
 });
 }
-
-ValidateRole();
+/*
+ValidateRole();*/
