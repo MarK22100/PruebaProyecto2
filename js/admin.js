@@ -83,15 +83,19 @@ function GuardarProducto(e) {
         inputImgUrl
         )
     ) {
+      if (esEdicion) {
+        GuardarProductoEditado();
+      } else {
         CrearProducto();
+      }
     } else {
-        Swal.fire({
+      Swal.fire({
         title: "Ups",
         text: "Todos los campos son requeridos.",
         icon: "error",
-        });
+      });
     }
-}
+  }
 
 function CrearProducto() {
     console.log('Entró en guardar producto');
@@ -113,6 +117,49 @@ function CrearProducto() {
     });
     LimpiarFormulario();
     ListarProductos();
+}
+
+function GuardarProductoEditado() {
+  let indexProducto = arrayProductos.findIndex((element) => {
+    return element.codigo === inputCodigo.value;
+  });
+
+  if (indexProducto !== -1) {
+    Swal.fire({
+      title: "¿Estas seguro?",
+      text: "Vas a cambiar los datos de un producto",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Guardar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        arrayProductos[indexProducto].codigo = inputCodigo.value;
+        arrayProductos[indexProducto].nombre = inputNombre.value;
+        arrayProductos[indexProducto].descripcion = inputDescripcion.value;
+        arrayProductos[indexProducto].precio = inputPrecio.value;
+        arrayProductos[indexProducto].imgUrl = inputImgUrl.value;
+        esEdicion = false;
+        Swal.fire({
+          title: "Exito",
+          text: "El producto se actualizo correctamente",
+          icon: "success",
+        });
+
+        LimpiarFormulario();
+        ListarProductos();
+      } else {
+        esEdicion = false;
+        LimpiarFormulario();
+      }
+    });
+  } else {
+    console.log(
+      "entro en el else de guardar producto editado por q el codigo no existe dentro del arrProductos"
+    );
+  }
 }
 
 window.LimpiarFormulario = function () {
@@ -159,5 +206,19 @@ function ListarProductos() {
         </tr>`;
     });
 }
+
+window.PrepararEdicion = function (codigo) {
+  const productoAEditar = arrayProductos.find((element) => {
+    return element.codigo === codigo;
+  });
+  if (productoAEditar !== undefined) {
+    inputCodigo.value = productoAEditar.codigo;
+    inputNombre.value = productoAEditar.nombre;
+    inputDescripcion.value = productoAEditar.descripcion;
+    inputPrecio.value = productoAEditar.precio;
+    inputImgUrl.value = productoAEditar.imgUrl;
+  }
+  esEdicion = true;
+};
 
 ValidateRole();
