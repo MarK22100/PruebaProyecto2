@@ -28,16 +28,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 px-3">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    <a class="nav-link active" aria-current="page" href="/index.html">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Acerca de nosotros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-none" id="adminUserBtn">Administrar usuarios</a>
+                    <a class="nav-link d-none" id="adminUserBtn" href="/pages/adminUser.html">Administrar usuarios</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link d-none" id="adminProdBtn">Administrar productos</a>
+                  <a class="nav-link d-none" id="adminProdBtn" href="/pages/adminProd.html">Administrar productos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link d-none" id="prodSelected">Productos favoritos</a>
@@ -54,6 +54,34 @@
     </div>
   </nav>
 
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg nav navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">
+        <img src="./img/logorolling.webp" class="" alt="logo" style="height: 50px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class=" nav-link active" aria-current="page" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="adminProdBtn">Administrar usuarios</a>
+          </li>
+        </ul>
+        <button class="loginbtn ms-auto" data-bs-toggle="modal" data-bs-target="#signInModal">
+          INICIAR SESION
+        </button>
+      </div>
+    </div>
+  </nav>
       <!-- Modal -->
       <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog ">
@@ -309,6 +337,8 @@
     </footer>
 
     <!-- Enlace a JS de Bootstrap (jQuery es necesario) -->
+
+    <script type="module" src="/js/regLogin.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/bootstrap.min.js"></script>
