@@ -160,4 +160,31 @@ arrayProductos.forEach((element) => {
 });
 }
 
+window.BorrarProducto = function (codigo) {
+  Swal.fire({
+    title: "¿Estas seguro?",
+    text: "Los cambios no se podrán revertir",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Eliminar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const nuevoArrProductos = arrayProductos.filter(
+        (element) => element.codigo !== codigo
+      );
+      arrayProductos = nuevoArrProductos;
+      Swal.fire({
+        title: "Exito",
+        text: "El producto se elimino correctamente",
+        icon: "success",
+      });
+      GuardarLocalStorage();
+      ListarProductos();
+    }
+  });
+};
+
 ValidateRole();
