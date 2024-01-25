@@ -1,8 +1,25 @@
 .img{
-    background-color: black;
-    background-image: url(/img/error404.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 587px;
-    width: 1918px;
+    width: 100%;
+    height: auto;
 }
+
+.contenedor1{
+    position: relative;
+    text-align: center;
+}
+
+.btn-back{
+    position: absolute;
+    top: 44%;
+    left: 21%;
+    transform: translate(-50%, -20%);
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff5e00;/* Puedes cambiar el color de fondo del botón según tus preferencias */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    width: 20vw;
+    height: 10vh;
+}
+
