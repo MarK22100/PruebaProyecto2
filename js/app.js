@@ -5,7 +5,7 @@ function CrearCards() {
     cardProductos.innerHTML = ""; 
     arrayProductos.forEach((element) => {
         cardProductos.innerHTML += `
-        <div class="card col-sm-6 mb-3 shadow h-100 mx-1" style="max-width: 350px;" id="cardProductos" category="${element.categoria}">
+        <div class="card shadow h-100 m-2" style="min-width: 280px;" id="cardProductos" category="${element.categoria}">
         <img src="${element.imgUrl}" class="card-img-top" style="height: 300px" alt="${element.descripcion}" >
         <div class="card-body text-center">
           <h5 class="card-title">${element.nombre}</h5>
