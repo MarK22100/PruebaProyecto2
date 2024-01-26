@@ -17,7 +17,7 @@ function CrearCards() {
           </button>
         </a>
         <a href="#">
-          <button type="button" class="btn btn-danger btn-custom-hoveer" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="btn btn-danger btn-custom-colours btn-custom-hoveer" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Ver mas
           </button>
           </a>
