@@ -1,8 +1,103 @@
 .img{
-    background-color: black;
-    background-image: url(/img/error404.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 587px;
-    width: 1918px;
+    width: 100%;
+    height: auto;
 }
+
+.contenedor1{
+    position: relative;
+    text-align: center;
+}
+
+.btn-back{
+    position: absolute;
+    top: 42%;
+    left: 12%;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff5e00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    width: 20vw;
+    height: 6vh;
+}
+
+
+@media (max-width: 784px) {
+    .btn-back{
+        padding: 4px;
+    }
+  }
+
+  @media (max-width: 624px) {
+    .btn-back{
+        padding: 4px;
+        font-size: 14px;
+    }
+  }
+
+  @media (max-width: 300px) {
+    .btn-back{
+        padding: 4px;
+        font-size: 12px;
+    }
+  }
+ 
+/*
+
+ .miboton {
+    position: absolute;
+    top: 44%;
+    left: 21%;
+    transform: translate(-50%, -20%);
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff5e00; // Puedes cambiar el color de fondo del botón según tus preferencias
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    width: 20vw;
+    height: 10vh;
+ }
+ 
+.miboton, .btn-chico, .btn-mediano, .btn-grande, .miboton:link, .miboton:visited {
+    color: #FFFFFF;
+    background-color: #ff5e00;
+}
+ 
+.btn-chico {
+    font-size: 1rem;
+    display: inline-block;
+    width: calc(50% - 20px);
+    padding: 10px;
+    margin: 10px;
+    background-color: #ff5e00;
+    border-radius: 5px;    
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 6px 18px;
+}
+ 
+.btn-mediano {
+    font-size: 1rem;
+    display: inline-block;
+    width: calc(50% - 20px);
+    padding: 10px;
+    margin: 10px;
+    background-color: #ff5e00;
+    border-radius: 5px;    
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 6px 18px;
+} 
+ 
+.btn-grande {
+    font-size: 1rem;
+    display: inline-block;
+    width: calc(50% - 20px);
+    padding: 10px;
+    margin: 10px;
+    background-color: #ff5e00;
+    border-radius: 5px;    
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 6px 18px;
+} 
+*/

@@ -51,4 +51,7 @@
 
   .btn-custom-hoveer:hover {background-color: #ff5e00;
     border: #000000;}
-    .btn-custom-colour {background-color: #ff5e00}
+    
+    .btn-custom-colours {background-color: #ff5e00;
+      border: #000000;}
+  
