@@ -46,7 +46,97 @@ export function validateSignIn(emailSignIn, passSignIn){
     }
 }
 
+export function validateInputPrice(input) {
+    const regExPrice = /^(\d{1,9}(?:\,\d{1,2})?|\d{1,2}(?:\,\d{1,2})?)$/;
+    if (regExPrice.test(input.value)) {
+      input.className = "form-control is-valid";
+      return true;
+    } else {
+      input.className = "form-control is-invalid";
+      return false;
+    }
+};
 
+export function validateInputUrl(input) {
+    const regExURL = /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/;
+  
+    if (regExURL.test(input.value)) {
+      input.className = "form-control is-valid";
+      return true;
+    } else {
+      input.className = "form-control is-invalid";
+      return false;
+    }
+};
+
+export function validateInputDescription(input){
+    if (input.value.trim().length >= 10 && input.value.trim().length <= 200) {
+        input.className = "form-control is-valid";
+        return true;
+      } else {
+        input.className = "form-control is-invalid";
+        return false;
+      }
+};
+
+export function validateInputCategory(input){
+    if (input.value.trim().length >= 3 && input.value.trim().length <= 20) {
+        input.className = "form-control is-valid";
+        return true;
+    } else {
+    input.className = "form-control is-invalid";
+    return false;
+    }
+};
+
+export function validateInputStock(input) {
+    const regExStock = /^[0-9]+$/;
+    if (regExStock.test(input.value)) {
+      input.className = "form-control is-valid";
+      return true;
+    } else {
+      input.className = "form-control is-invalid";
+      return false;
+    }
+};
+
+export function validateAll(
+    inputCode,
+    inputName,
+    inputPrice,
+    inputCategory,
+    inputImgUrl,
+    inputDescription,
+    inputStock
+  ) {
+    if (
+      validateInputReq(inputCode) &&
+      validateInputReq(inputName) &&
+      validateInputPrice(inputPrice) &&
+      validateInputCategory(inputCategory) &&
+      validateInputUrl(inputImgUrl) &&
+      validateInputDescription(inputDescription) &&
+      validateInputStock(inputStock)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+};
+
+export function getAleatoryCode(){
+    return window.crypto.randomUUID();
+};
+
+export function getRoleUserLog(){
+    const user = JSON.parse(sessionStorage.getItem("user"));
+  
+    if (user !== null) {
+      return user.role;
+    } else {
+      return "invitado";
+    }
+};
 
 /*
 ///Validation

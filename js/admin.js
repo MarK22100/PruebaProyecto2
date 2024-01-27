@@ -1,14 +1,5 @@
-/**
- * Se requieren helpers de validación de:
- * Name de producto
- * Price
- * Categoría
- * Imágen
- * Descripción
- * Stock
- */
 import {
-    validateInputRequired,
+    validateInputReq,
     validateInputPrice,
     validateInputCategory,
     validateInputUrl,
@@ -39,11 +30,11 @@ inputCode.value = getAleatoryCode();
 form.addEventListener("submit", saveProduct);
 
 inputCode.addEventListener("blur", () => {
-validateInputRequired(inputCode);
+validateInputReq(inputCode);
 });
 
 inputName.addEventListener("blur", () => {
-validateInputRequired(inputName);
+validateInputReq(inputName);
 });
 
 inputDescription.addEventListener("blur", () => {
@@ -179,15 +170,6 @@ function saveLocalStorage() {
     localStorage.setItem("products", JSON.stringify(arrayProducts));
 }
 
-function validateRole(){
-    console.log('Entró en checkAdmin');
-    const role=getRoleUserLog();
-
-    if(role!=='Admin'){
-        window.location.replace('/index.html');
-    };  
-};
-
 function listProducts() {
     bodyTabla.innerHTML = "";
     arrayProducts.forEach((element) => {
@@ -247,5 +229,3 @@ window.deleteProduct = function (code) {
     }
   });
 };
-
-validateRole()
