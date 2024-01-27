@@ -172,10 +172,10 @@ window.cleanForm = function () {
     inputStock.className = "form-control";
     inputPrice.className = "form-control";
     inputImgUrl.className = "form-control";
-    GuardarLocalStorage();
+    saveLocalStorage();
 };
 
-function GuardarLocalStorage() {
+function saveLocalStorage() {
     localStorage.setItem("products", JSON.stringify(arrayProducts));
 }
 
@@ -199,28 +199,29 @@ function listProducts() {
             <td><a href="${element.imgUrl}" target="_blank" title="Ver Imagen">${element.imgUrl}</a></td>
             <td class="">
             <div class="d-flex">
-            <a href='#titulo' class="btn btn-warning mx-1" onclick="PrepararEdicion('${element.code}')">Editar</a>
-            <button type="button" class="btn btn-danger mx-1" onclick="BorrarProducto('${element.code}')" >Eliminar</button>
+            <a href='#titulo' class="btn btn-warning mx-1" onclick="prepareEdition('${element.code}')">Editar</a>
+            <button type="button" class="btn btn-danger mx-1" onclick="deleteProduct('${element.code}')" >Eliminar</button>
             </div>
             </td>                
         </tr>`;
     });
 }
 
-window.PrepararEdicion = function (code) {
-  const productoAEditar = arrayProducts.find((element) => {
+window.prepareEdition = function (code) {
+  const productToEdit = arrayProducts.find((element) => {
     return element.code === code;
   });
-  if (productoAEditar !== undefined) {
-    inputCode.value = productoAEditar.code;
-    inputName.value = productoAEditar.name;
-    inputDescription.value = productoAEditar.description;
-    inputPrice.value = productoAEditar.Price;
-    inputImgUrl.value = productoAEditar.imgUrl;
+  if (productToEdit !== undefined) {
+    inputCode.value = productToEdit.code;
+    inputName.value = productToEdit.name;
+    inputDescription.value = productToEdit.description;
+    inputPrice.value = productToEdit.Price;
+    inputImgUrl.value = productToEdit.imgUrl;
   }
   isEdition = true;
+};
 
-window.BorrarProducto = function (code) {
+window.deleteProduct = function (code) {
   Swal.fire({
     title: "¿Estas seguro?",
     text: "Los cambios no se podrán revertir",
@@ -232,20 +233,19 @@ window.BorrarProducto = function (code) {
     cancelButtonText: "Cancelar",
   }).then((result) => {
     if (result.isConfirmed) {
-      const nuevoArrProductos = arrayProducts.filter(
+      const newArrayProducts = arrayProducts.filter(
         (element) => element.code !== code
       );
-      arrayProducts = nuevoArrProductos;
+      arrayProducts = newArrayProducts;
       Swal.fire({
-        title: "Exito",
-        text: "El producto se elimino correctamente",
+        title: "Éxito",
+        text: "El producto se eliminó correctamente",
         icon: "success",
       });
-      GuardarLocalStorage();
+      saveLocalStorage();
       listProducts();
     }
   });
-
 };
 
-validateRole();
+validateRole()
