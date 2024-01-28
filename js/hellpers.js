@@ -46,7 +46,7 @@ export function validateSignIn(emailSignIn, passSignIn){
     }
 }
 //VALIDATES FORM INPUTS PRODUCT
-
+/*
 export function validateAll(code, name, description, category, stock, price, img){
     if (validateInputReq(code)&&validateInputReq(name)&&validateInputReq(description)&&validatePrice(price)&&validateInputReq(img)&&validateStock(stock)&&validateInputReq(category)) {
         return true;
@@ -54,6 +54,7 @@ export function validateAll(code, name, description, category, stock, price, img
         return false;
     }
 }
+*/
 export function validatePrice(input){
     const regexNum = /^[0-9]+$/;
     if (regexNum.test(input.value)) {
@@ -78,28 +79,80 @@ export function validateStock(input){
     }
 
 }
+export function validateInputPrice(input) {
+    const regExPrice = /^(\d{1,9}(?:\,\d{1,2})?|\d{1,2}(?:\,\d{1,2})?)$/;
+    if (regExPrice.test(input.value)) {
+      input.className = "form-control is-valid";
+      return true;
+    } else {
+      input.className = "form-control is-invalid";
+      return false;
+    }
+};
 
-
-/*
-export function generarCodigo() {
-    let code;
-    let codesList = arrayProducts.map((element) => element.code);
+export function validateInputUrl(input) {
+    const regExURL = /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/;
   
-    do {
-        code = Math.floor(0 + Math.random() * 9999);
-    } while (codesList.includes(code));
-    
-    return code;
-}
+    if (regExURL.test(input.value)) {
+      input.className = "form-control is-valid";
+      return true;
+    } else {
+      input.className = "form-control is-invalid";
+      return false;
+    }
+};
 
+export function validateInputDescription(input){
+    if (input.value.trim().length >= 10 && input.value.trim().length <= 200) {
+        input.className = "form-control is-valid";
+        return true;
+      } else {
+        input.className = "form-control is-invalid";
+        return false;
+      }
+};
 
-///Validation
-//  SignIn
-emailSignIn.addEventListener('blur',()=>{validateinputRequerido(emailSignIn)});
-passSignIn.addEventListener('blur',()=>{validateinputRequerido(passSignIn)});
-//  SignUp
-nameInp.addEventListener('blur',()=>{validateinputRequerido(nameInp)});
-emailInp.addEventListener('blur',()=>{validateinputRequerido(emailInp)});
-passwordInp.addEventListener('blur',()=>{validateinputRequerido(passwordInp)});
-repPassInp.addEventListener('blur',()=>{validateinputRequerido(repPassInp)});
-*/
+export function validateInputCategory(input){
+    if (input.value.trim().length >= 3 && input.value.trim().length <= 20) {
+        input.className = "form-control is-valid";
+        return true;
+    } else {
+    input.className = "form-control is-invalid";
+    return false;
+    }
+};
+
+export function validateInputStock(input) {
+    const regExStock = /^[0-9]+$/;
+    if (regExStock.test(input.value)) {
+      input.className = "form-control is-valid";
+      return true;
+    } else {
+      input.className = "form-control is-invalid";
+      return false;
+    }
+};
+
+export function validateAll(
+    inputCode,
+    inputName,
+    inputPrice,
+    inputCategory,
+    inputImgUrl,
+    inputDescription,
+    inputStock
+  ) {
+    if (
+      validateInputReq(inputCode) &&
+      validateInputReq(inputName) &&
+      validateInputPrice(inputPrice) &&
+      validateInputCategory(inputCategory) &&
+      validateInputUrl(inputImgUrl) &&
+      validateInputDescription(inputDescription) &&
+      validateInputStock(inputStock)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+};

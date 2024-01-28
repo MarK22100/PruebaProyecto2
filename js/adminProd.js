@@ -1,4 +1,4 @@
-import {validateAll } from "./hellpers.js";
+import {validateAll, setCode } from "./hellpers.js";
 
 
 let arrayProducts = JSON.parse(localStorage.getItem("products")) || [];
@@ -196,13 +196,3 @@ window.deleteProd = function (code) {
   
   }
 
-  function setCode() {
-    let code;
-    let codesList = arrayProducts.map((element) => element.code);
-  
-    do {
-        code = Math.floor(0 + Math.random() * 9999);
-    } while (codesList.includes(code));
-    
-    return code;
-}
