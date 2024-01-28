@@ -55,30 +55,7 @@ export function validateAll(code, name, description, category, stock, price, img
     }
 }
 */
-export function validatePrice(input){
-    const regexNum = /^[0-9]+$/;
-    if (regexNum.test(input.value)) {
-        input.className = "form-control is-valid";
-        return true;  
-    }
-    else{
-        input.className = "form-control is-invalid";
-        return false;
-    }
 
-}
-export function validateStock(input){
-    const regexNum = /^[0-9]+$/;
-    if (regexNum.test(input.value)) {
-        input.className = "form-control is-valid";
-        return true;  
-    }
-    else{
-        input.className = "form-control is-invalid";
-        return false;
-    }
-
-}
 export function validateInputPrice(input) {
     const regExPrice = /^(\d{1,9}(?:\,\d{1,2})?|\d{1,2}(?:\,\d{1,2})?)$/;
     if (regExPrice.test(input.value)) {
@@ -132,24 +109,33 @@ export function validateInputStock(input) {
       return false;
     }
 };
-
+export function validateInputCode(input) {
+    const regExCode = /^[0-9]+$/;
+    if (regExCode.test(input.value)) {
+      input.className = "form-control is-valid";
+      return true;
+    } else {
+      input.className = "form-control is-invalid";
+      return false;
+    }
+};
 export function validateAll(
     inputCode,
     inputName,
-    inputPrice,
-    inputCategory,
-    inputImgUrl,
     inputDescription,
-    inputStock
+    inputCategory,
+    inputStock,
+    inputPrice,
+    inputImgUrl
   ) {
     if (
-      validateInputReq(inputCode) &&
+      validateInputCode(inputCode) &&
       validateInputReq(inputName) &&
-      validateInputPrice(inputPrice) &&
-      validateInputCategory(inputCategory) &&
-      validateInputUrl(inputImgUrl) &&
       validateInputDescription(inputDescription) &&
-      validateInputStock(inputStock)
+      validateInputCategory(inputCategory) &&
+      validateInputStock(inputStock)&&
+      validateInputPrice(inputPrice) &&
+      validateInputUrl(inputImgUrl)
     ) {
       return true;
     } else {

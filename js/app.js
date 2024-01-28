@@ -1,10 +1,11 @@
 let cardProducts = document.getElementById("cardProducts")
 const arrayProducts = JSON.parse(localStorage.getItem("products")) || [] ; 
+
 function CrearCards() {
     cardProducts.innerHTML = ""; 
     arrayProducts.forEach((element) => {
         cardProducts.innerHTML += `
-        <div class="card shadow h-100 m-2" style="min-width: 280px;" category="${element.category}">
+        <div class="product-item card shadow h-100 m-2" style="min-width: 280px;" category="${element.category}">
         <img src="${element.imgUrl}" class="card-img-top" style="height: 300px" alt="${element.description}" >
         <div class="card-body text-center">
           <h5 class="card-title">${element.name}</h5>
