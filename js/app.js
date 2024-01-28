@@ -1,16 +1,15 @@
-let cardProductos = document.getElementById("cardProductos")
-console.log(cardProductos);
+let cardProducts = document.getElementById("cardProducts")
+const arrayProducts = JSON.parse(localStorage.getItem("products")) || [] ; 
 function CrearCards() {
-    const arrayProductos = JSON.parse(localStorage.getItem("productos")) || [] ; 
-    cardProductos.innerHTML = ""; 
-    arrayProductos.forEach((element) => {
-        cardProductos.innerHTML += `
-        <div class="card shadow h-100 m-2" style="min-width: 280px;" id="cardProductos" category="${element.categoria}">
-        <img src="${element.imgUrl}" class="card-img-top" style="height: 300px" alt="${element.descripcion}" >
+    cardProducts.innerHTML = ""; 
+    arrayProducts.forEach((element) => {
+        cardProducts.innerHTML += `
+        <div class="card shadow h-100 m-2" style="min-width: 280px;" category="${element.category}">
+        <img src="${element.imgUrl}" class="card-img-top" style="height: 300px" alt="${element.description}" >
         <div class="card-body text-center">
-          <h5 class="card-title">${element.nombre}</h5>
-          <p class="card-text">${element.descripcion}</p>
-          <p class="card-text">$${element.precio}</p>
+          <h5 class="card-title">${element.name}</h5>
+          <p class="card-text">${element.description}</p>A
+          <p class="card-text">$${element.price}</p>
           <a href="#">
           <button type="button" class="btn btn-dark btn-custom-hoveer" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Comprar

@@ -154,10 +154,12 @@
                     <table class="table table-bordered table-dark table-striped">
                         <thead>
                             <tr class="text-center">
+                                <th scope="col">CODIGO</th>
                                 <th scope="col">NOMBRE</th>
                                 <th scope="col">DESCRIPCION</th>
-                                <th scope="col">PRECIO</th>
+                                <th scope="col">CATEGORIA</th>
                                 <th scope="col">STOCK</th>
+                                <th scope="col">PRECIO</th>
                                 <th scope="col">IMAGEN</th>
                                 <th scope="col">ACCIONES</th>
                             </tr>
@@ -172,26 +174,25 @@
             <h2 id="titulo" class="text-center fw-bold">Administrar productos</h2>
         </section>
         <section class="container">
-            <form class="fw-bold fs-5 bg-body-secondary px-5 py-4 rounded-4" id="formProductos">
+            <form id="formProducts" class="fw-bold fs-5 bg-body-secondary px-5 py-4 rounded-4">
                 <div class="my-1">
-                    <label for="codigo" class="form-label" >CODIGO</label>
-                    <input type="text" id="codigo" class="form-control" placeholder="INGRESE EL CODIGO" minlength="4" maxlength="50" required>
+                    <label for="code" class="form-label" >CODIGO</label>
+                    <input id='code'type="text" class="form-control" placeholder="Ingrese el codigo" minlength="1" maxlength="50"  disabled required>
+                </div>
+                    <label for="name" class="form-label" >NOMBRE</label>
+                    <input type="text" id="name" class="form-control" placeholder="INGRESE EL NOMBRE" minlength="4" maxlength="50" required>
                 </div>
                 <div class="my-1">
-                    <label for="nombre" class="form-label" >NOMBRE</label>
-                    <input type="text" id="nombre" class="form-control" placeholder="INGRESE EL NOMBRE" minlength="4" maxlength="50" required>
-                </div>
-                <div class="my-1">
-                    <label for="categoria" class="form-label" >CATEGORIA</label>
-                    <input type="text" id="categoria" class="form-control" placeholder="INGRESE LA CATEGORIA" minlength="4" maxlength="50" required>
+                    <label for="category" class="form-label" >CATEGORIA</label>
+                    <input type="text" id="category" class="form-control" placeholder="INGRESE LA CATEGORIA" minlength="4" maxlength="50" required>
                 </div>
                 <div class="my-3">
-                    <label for="descripcion"class="form-label">DESCRIPCION</label>
-                    <textarea id="descripcion" class="form-control" placeholder="INGRESE LA DESCRIPCION" minlength="10" maxlength="200" required></textarea>
+                    <label for="description"class="form-label">DESCRIPCION</label>
+                    <textarea id="description" class="form-control" placeholder="INGRESE LA DESCRIPCION" minlength="10" maxlength="200" required></textarea>
                 </div>
                 <div class="my-3">
-                    <label for="precio"class="form-label" >PRECIO</label>
-                    <input id="precio" class="form-control" placeholder="INGRESE LA PRECIO" minlength="1" maxlength="50" required>
+                    <label for="price"class="form-label" >PRECIO</label>
+                    <input id="price" class="form-control" placeholder="INGRESE LA PRECIO" minlength="1" maxlength="50" required>
                 </div>
                 <div class="my-3">
                     <label for="stock"class="form-label" >STOCK</label>
@@ -206,7 +207,7 @@
         </section>
     </main>
 </body>
-<script type="module" src="/js/admin.js"></script>
+<script type="module" src="/js/adminProd.js"></script>
 <script type="module" src="/js/regLogin.js"></script>
 <script src="/js/jquery-3.2.1.js"></script>
 <script src="/js/bootstrap.min.js"></script>

@@ -8,6 +8,8 @@
  * Stock
  */
 
+import { setCode } from "./hellpers";
+
 
 let adminLi=document.getElementById('adminLi');
 
@@ -157,7 +159,7 @@ function GuardarProductoEditado() {
 window.LimpiarFormulario = function () {
     form.reset();
     inputCodigo.className = "form-control";
-    inputCodigo.value = ObtenerCodigoAleatorio();
+    inputCodigo.value = setCode();
     inputNombre.className = "form-control";
     inputDescripcion.className = "form-control";
     inputCategoria.className = "form-control";
