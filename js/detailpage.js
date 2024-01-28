@@ -1,4 +1,4 @@
-let arrayProduct = JSON.parse(localStorage.getItem("productos")) || [];
+let arrayProduct = JSON.parse(localStorage.getItem("products")) || [];
 
 let title = document.getElementById('title');
 let category = document.getElementById('category');
@@ -8,11 +8,11 @@ let description = document.getElementById('description');
 let stock = document.getElementById('stock');
 
 function detailPage(){
-    const arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
+    const arrayProducts = JSON.parse(localStorage.getItem("products")) || [];
 
-    let productId = new URLSearchParams(window.location.search).get('codigo');
-    const prodSelec = arrayProductos.filter((element) =>{
-        return element.codigo == productId
+    let productId = new URLSearchParams(window.location.search).get('code');
+    const prodSelec = arrayProducts.filter((element) =>{
+        return element.code == productId
     })[0]
 
     if(!prodSelec){
@@ -25,3 +25,5 @@ function detailPage(){
     description.innerText = prodSelec.description;
     stock.innerText = prodSelec.stock;
 }
+
+detailPage();
