@@ -16,10 +16,7 @@ function CrearCards() {
             Comprar
           </button>
         </a>
-        <a href="#">
-          <button type="button" class="btn btn-danger btn-custom-colours btn-custom-hoveer" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Ver mas
-          </button>
+        <a class="btn btn-primary" href="/pages/detailpage.html?codigo=${element.code}">Ver Mas
           </a>
         </div>
       </div>
