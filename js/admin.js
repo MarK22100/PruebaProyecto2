@@ -5,27 +5,23 @@ import {
     validateInputUrl,
     validateInputDescription,
     validateInputStock,
-    validateAll,
-    getAleatoryCode,
-    getRoleUserLog
+    validateAll
   } from "./hellpers.js";
   
-import { checkAdmin } from "./user.js";
-
-let adminLi=document.getElementById('adminLi');
-checkAdmin(adminLi);
-
 let arrayProducts = JSON.parse(localStorage.getItem("products")) || [];
 let bodyTabla = document.querySelector("tbody");
+let inputCode = document.getElementById("code");
 let inputName = document.getElementById("name");
-let inputPrice = document.getElementById("Price");
+let inputPrice = document.getElementById("price");
 let inputCategory = document.getElementById("category");
 let inputImgUrl = document.getElementById("imgUrl");
 let inputDescription = document.getElementById("description");
 let inputStock = document.getElementById("stock");
+
 console.log(bodyTabla);
 let form = document.getElementById('formProducts');
-inputCode.value = getAleatoryCode();
+
+inputCode.value = setCode();
 
 form.addEventListener("submit", saveProduct);
 
@@ -96,7 +92,7 @@ function CreateProduct() {
         description: inputDescription.value,
         category: inputCategory.value,
         stock: inputStock.value,
-        Price: inputPrice.value,
+        price: inputPrice.value,
         imgUrl: inputImgUrl.value,
     };
 
@@ -130,7 +126,8 @@ function saveProductEdited() {
         arrayProducts[indexProduct].code = inputCode.value;
         arrayProducts[indexProduct].name = inputName.value;
         arrayProducts[indexProduct].description = inputDescription.value;
-        arrayProducts[indexProduct].Price = inputPrice.value;
+        arrayProducts[indexProduct].category= inputCategory.value;
+        arrayProducts[indexProduct].price = inputPrice.value;
         arrayProducts[indexProduct].imgUrl = inputImgUrl.value;
         isEdition = false;
         Swal.fire({
@@ -156,7 +153,7 @@ function saveProductEdited() {
 window.cleanForm = function () {
     form.reset();
     inputCode.className = "form-control";
-    inputCode.value = getAleatoryCode();
+    inputCode.value = setCode();
     inputName.className = "form-control";
     inputDescription.className = "form-control";
     inputCategory.className = "form-control";
@@ -177,7 +174,9 @@ function listProducts() {
             <th scope="row">${element.code}</th>
             <td>${element.name}</td>
             <td>${element.description}</td>
-            <td>$ ${element.Price}</td>
+            <td>${element.category}</td>
+            <td>${element.stock}</td>
+            <td>$ ${element.price}</td>
             <td><a href="${element.imgUrl}" target="_blank" title="Ver Imagen">${element.imgUrl}</a></td>
             <td class="">
             <div class="d-flex">
@@ -197,7 +196,9 @@ window.prepareEdition = function (code) {
     inputCode.value = productToEdit.code;
     inputName.value = productToEdit.name;
     inputDescription.value = productToEdit.description;
-    inputPrice.value = productToEdit.Price;
+    inputStock.value = productToEdit.stock;
+    inputCategory.value = productToEdit.category;
+    inputPrice.value = productToEdit.price;
     inputImgUrl.value = productToEdit.imgUrl;
   }
   isEdition = true;
@@ -229,3 +230,13 @@ window.deleteProduct = function (code) {
     }
   });
 };
+function setCode() {
+  let code;
+  let codesList = arrayProducts.map((element) => element.code);
+
+  do {
+      code = Math.floor(0 + Math.random() * 10000);
+  } while (codesList.includes(code));
+  
+  return code;
+}
