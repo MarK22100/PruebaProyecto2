@@ -16,7 +16,8 @@ function CrearCards() {
             Comprar
           </button>
         </a>
-        <a class="btn btn-primary" href="/pages/detailpage.html?codigo=${element.code}">Ver Mas
+        <a class="btn" href="/pages/detailpage.html?codigo=${element.code}">
+           Detalles 
           </a>
         </div>
       </div>
