@@ -1,4 +1,4 @@
-const arrFavoriteProducts = JSON.parse(localStorage.getItem('favoriteProducts'));
+const arrFavoriteProducts = JSON.parse(localStorage.getItem('favoriteProducts')) || [];
 const arrayProducts = JSON.parse(localStorage.getItem("products")) || [];
 
 let title = document.getElementById('title');
@@ -31,23 +31,25 @@ function detailPage() {
 detailPage();
 
 
-window.addFavProduct = function() {
+window.addFavProduct = function () {
+
+
 
     const favoriteProduct = arrayProducts.find((element) => {
         return element.code === productId;
     })
-     
-         if (arrFavoriteProducts.includes(favoriteProduct)) {
-             Swal.fire({
-                 title: "Ups??",
-                 text: "Este prodecto ya esta en tu lista de favoritos",
-                 icon: "info"
-             });
-         }
-         else {
+    if (arrFavoriteProducts.includes(favoriteProduct)) {
+        Swal.fire({
+            title: "Ups!!!",
+            text: "Este prodecto ya esta en tu lista de favoritos",
+            icon: "info"
+        });
+    }
+    else {
+        console.log(favoriteProduct);
+        arrFavoriteProducts.push(favoriteProduct);
+        localStorage.setItem('favoriteProducts', JSON.stringify(arrFavoriteProducts));
 
-            arrFavoriteProducts.push(favoriteProduct);
-            localStorage.setItem('favoriteProducts', JSON.stringify(arrFavoriteProducts));
-
-        }
+    }
 }
+
