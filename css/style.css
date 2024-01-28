@@ -1,4 +1,45 @@
-
-body{
-    background-color: black;
+.img{
+    width: 100%;
+    height: auto;
 }
+
+.contenedor1{
+    position: relative;
+    text-align: center;
+}
+
+.btn-back{
+    position: absolute;
+    top: 42%;
+    left: 12%;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff5e00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    width: 20vw;
+    height: 6vh;
+}
+
+
+@media (max-width: 784px) {
+    .btn-back{
+        padding: 4px;
+    }
+  }
+
+  @media (max-width: 624px) {
+    .btn-back{
+        padding: 4px;
+        font-size: 14px;
+    }
+  }
+
+  @media (max-width: 300px) {
+    .btn-back{
+        padding: 4px;
+        font-size: 12px;
+    }
+  }
+ 

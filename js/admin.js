@@ -1,163 +1,242 @@
-/**
- * Se requieren helpers de validación de:
- * Nombre de producto
- * Precio
- * Categoría
- * Imágen
- * Descripción
- * Stock
- */
 import {
-    validarInputRequerido,
-    validarInputPrecio,
-    validarInputCategoria,
-    validarInputUrl,
-    validarInputDescripcion,
-    validarInputStock,
-    validarTodo,
-    ObtenerCodigoAleatorio,
-    getRoleUserLog
+    validateInputReq,
+    validateInputPrice,
+    validateInputCategory,
+    validateInputUrl,
+    validateInputDescription,
+    validateInputStock,
+    validateAll
   } from "./hellpers.js";
   
-import { checkAdmin } from "./user.js";
-
-let adminLi=document.getElementById('adminLi');
-checkAdmin(adminLi);
-
-let arrayProductos = JSON.parse(localStorage.getItem("productos")) || [];
+let arrayProducts = JSON.parse(localStorage.getItem("products")) || [];
 let bodyTabla = document.querySelector("tbody");
-let inputNombre = document.getElementById("nombre");
-let inputPrecio = document.getElementById("precio");
-let inputCategoria = document.getElementById("categoria");
+let inputCode = document.getElementById("code");
+let inputName = document.getElementById("name");
+let inputPrice = document.getElementById("price");
+let inputCategory = document.getElementById("category");
 let inputImgUrl = document.getElementById("imgUrl");
-let inputDescripcion = document.getElementById("descripcion");
+let inputDescription = document.getElementById("description");
 let inputStock = document.getElementById("stock");
+
 console.log(bodyTabla);
-let form = document.getElementById('formProductos');
-inputCodigo.value = ObtenerCodigoAleatorio();
+let form = document.getElementById('formProducts');
 
-form.addEventListener("submit", GuardarProducto);
+inputCode.value = setCode();
 
-inputCodigo.addEventListener("blur", () => {
-validarInputRequerido(inputCodigo);
+form.addEventListener("submit", saveProduct);
+
+inputCode.addEventListener("blur", () => {
+validateInputReq(inputCode);
 });
 
-inputNombre.addEventListener("blur", () => {
-validarInputRequerido(inputNombre);
+inputName.addEventListener("blur", () => {
+validateInputReq(inputName);
 });
 
-inputDescripcion.addEventListener("blur", () => {
-validarInputDescripcion(inputDescripcion);
+inputDescription.addEventListener("blur", () => {
+validateInputDescription(inputDescription);
 });
 
-inputDescripcion.addEventListener("blur", () => {
-validarInputCategoria(inputCategoria);
+inputDescription.addEventListener("blur", () => {
+validateInputCategory(inputCategory);
 });
 
-inputDescripcion.addEventListener("blur", () => {
-validarInputStock(inputStock);
+inputDescription.addEventListener("blur", () => {
+validateInputStock(inputStock);
 });
 
-inputPrecio.addEventListener("blur", () => {
-validarInputPrecio(inputPrecio);
+inputPrice.addEventListener("blur", () => {
+validateInputPrice(inputPrice);
 });
 
 inputImgUrl.addEventListener("blur", () => {
-validarInputUrl(inputImgUrl);
+validateInputUrl(inputImgUrl);
 });
 
-ListarProductos();
+listProducts();
 
-let esEdicion = false;
+let isEdition = false;
 
-function GuardarProducto(e) {
-e.preventDefault();
-if (
-    validarTodo(
-    inputCodigo,
-    inputNombre,
-    inputDescripcion,
-    inputCategoria,
-    inputStock,
-    inputPrecio,
-    inputImgUrl
-    )
-) {
-    CrearProducto();
-} else {
+function saveProduct(e) {
+    e.preventDefault();
+    if (
+        validateAll(
+        inputCode,
+        inputName,
+        inputDescription,
+        inputCategory,
+        inputStock,
+        inputPrice,
+        inputImgUrl
+        )
+    ) {
+      if (isEdition) {
+        saveProductEdited();
+      } else {
+        CreateProduct();
+      }
+    } else {
+      Swal.fire({
+        title: "Ups",
+        text: "Todos los campos son requeridos.",
+        icon: "error",
+      });
+    }
+  }
+
+function CreateProduct() {
+    console.log('Entró en guardar producto');
+    const newProduct = {
+        code: inputCode.value,
+        name: inputName.value,
+        description: inputDescription.value,
+        category: inputCategory.value,
+        stock: inputStock.value,
+        price: inputPrice.value,
+        imgUrl: inputImgUrl.value,
+    };
+
+    arrayProducts.push(newProduct);
     Swal.fire({
-    title: "Ups",
-    text: "Todos los campos son requeridos.",
-    icon: "error",
+        title: "Éxito",
+        text: "El producto se guardó correctamente",
+        icon: "success",
+    });
+    cleanForm();
+    listProducts();
+}
+
+function saveProductEdited() {
+  let indexProduct = arrayProducts.findIndex((element) => {
+    return element.code === inputCode.value;
+  });
+
+  if (indexProduct !== -1) {
+    Swal.fire({
+      title: "¿Estas seguro?",
+      text: "Vas a cambiar los datos de un producto",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Guardar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        arrayProducts[indexProduct].code = inputCode.value;
+        arrayProducts[indexProduct].name = inputName.value;
+        arrayProducts[indexProduct].description = inputDescription.value;
+        arrayProducts[indexProduct].category= inputCategory.value;
+        arrayProducts[indexProduct].price = inputPrice.value;
+        arrayProducts[indexProduct].imgUrl = inputImgUrl.value;
+        isEdition = false;
+        Swal.fire({
+          title: "Exito",
+          text: "El producto se actualizo correctamente",
+          icon: "success",
+        });
+
+        cleanForm();
+        listProducts();
+      } else {
+        isEdition = false;
+        cleanForm();
+      }
+    });
+  } else {
+    console.log(
+      "Entró en el else de guardar producto editado porque el code no existe"
+    );
+  }
+}
+
+window.cleanForm = function () {
+    form.reset();
+    inputCode.className = "form-control";
+    inputCode.value = setCode();
+    inputName.className = "form-control";
+    inputDescription.className = "form-control";
+    inputCategory.className = "form-control";
+    inputStock.className = "form-control";
+    inputPrice.className = "form-control";
+    inputImgUrl.className = "form-control";
+    saveLocalStorage();
+};
+
+function saveLocalStorage() {
+    localStorage.setItem("products", JSON.stringify(arrayProducts));
+}
+
+function listProducts() {
+    bodyTabla.innerHTML = "";
+    arrayProducts.forEach((element) => {
+        bodyTabla.innerHTML += ` <tr>                  
+            <th scope="row">${element.code}</th>
+            <td>${element.name}</td>
+            <td>${element.description}</td>
+            <td>${element.category}</td>
+            <td>${element.stock}</td>
+            <td>$ ${element.price}</td>
+            <td><a href="${element.imgUrl}" target="_blank" title="Ver Imagen">${element.imgUrl}</a></td>
+            <td class="">
+            <div class="d-flex">
+            <a href='#titulo' class="btn btn-warning mx-1" onclick="prepareEdition('${element.code}')">Editar</a>
+            <button type="button" class="btn btn-danger mx-1" onclick="deleteProduct('${element.code}')" >Eliminar</button>
+            </div>
+            </td>                
+        </tr>`;
     });
 }
-}
 
-function CrearProducto() {
-console.log('Entró en guardar producto');
-const nuevoProducto = {
-    codigo: inputCodigo.value,
-    nombre: inputNombre.value,
-    descripcion: inputDescripcion.value,
-    categoria: inputCategoria.value,
-    stock: inputStock.value,
-    precio: inputPrecio.value,
-    imgUrl: inputImgUrl.value,
+window.prepareEdition = function (code) {
+  const productToEdit = arrayProducts.find((element) => {
+    return element.code === code;
+  });
+  if (productToEdit !== undefined) {
+    inputCode.value = productToEdit.code;
+    inputName.value = productToEdit.name;
+    inputDescription.value = productToEdit.description;
+    inputStock.value = productToEdit.stock;
+    inputCategory.value = productToEdit.category;
+    inputPrice.value = productToEdit.price;
+    inputImgUrl.value = productToEdit.imgUrl;
+  }
+  isEdition = true;
 };
 
-arrayProductos.push(nuevoProducto);
-Swal.fire({
-    title: "Éxito",
-    text: "El producto se guardó correctamente",
-    icon: "success",
-});
-LimpiarFormulario();
-ListarProductos();
-}
-
-window.LimpiarFormulario = function () {
-form.reset();
-inputCodigo.className = "form-control";
-inputCodigo.value = ObtenerCodigoAleatorio();
-inputNombre.className = "form-control";
-inputDescripcion.className = "form-control";
-inputCategoria.className = "form-control";
-inputStock.className = "form-control";
-inputPrecio.className = "form-control";
-inputImgUrl.className = "form-control";
-GuardarLocalStorage();
+window.deleteProduct = function (code) {
+  Swal.fire({
+    title: "¿Estas seguro?",
+    text: "Los cambios no se podrán revertir",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Eliminar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const newArrayProducts = arrayProducts.filter(
+        (element) => element.code !== code
+      );
+      arrayProducts = newArrayProducts;
+      Swal.fire({
+        title: "Éxito",
+        text: "El producto se eliminó correctamente",
+        icon: "success",
+      });
+      saveLocalStorage();
+      listProducts();
+    }
+  });
 };
+function setCode() {
+  let code;
+  let codesList = arrayProducts.map((element) => element.code);
 
-function GuardarLocalStorage() {
-localStorage.setItem("productos", JSON.stringify(arrayProductos));
+  do {
+      code = Math.floor(0 + Math.random() * 10000);
+  } while (codesList.includes(code));
+  
+  return code;
 }
-
-function ValidateRole(){
-console.log('Entró en checkAdmin');
-const role=getRoleUserLog();
-
-if(role!=='Admin'){
-    window.location.replace('/index.html');
-};  
-};
-
-function ListarProductos() {
-bodyTabla.innerHTML = "";
-arrayProductos.forEach((element) => {
-    bodyTabla.innerHTML += ` <tr>                  
-        <th scope="row">${element.codigo}</th>
-        <td>${element.nombre}</td>
-        <td>${element.descripcion}</td>
-        <td>$ ${element.precio}</td>
-        <td><a href="${element.imgUrl}" target="_blank" title="Ver Imagen">${element.imgUrl}</a></td>
-        <td class="">
-        <div class="d-flex">
-        <a href='#titulo' class="btn btn-warning mx-1" onclick="PrepararEdicion('${element.codigo}')">Editar</a>
-        <button type="button" class="btn btn-danger mx-1" onclick="BorrarProducto('${element.codigo}')" >Eliminar</button>
-        </div>
-        </td>                
-    </tr>`;
-});
-}
-
-ValidateRole();

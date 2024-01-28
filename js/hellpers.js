@@ -1,5 +1,5 @@
 export function validateInputReq(input){
-    if (input.value.trim().length>3  && input.value.trim().length <= 30) {
+    if (input.value.trim().length>3  && input.value.trim().length <= 200) {
         input.className ="form-control is-valid"
         return true;
     }
@@ -45,17 +45,100 @@ export function validateSignIn(emailSignIn, passSignIn){
         return false;
     }
 }
-
-
-
+//VALIDATES FORM INPUTS PRODUCT
 /*
-///Validation
-//  SignIn
-emailSignIn.addEventListener('blur',()=>{validateinputRequerido(emailSignIn)});
-passSignIn.addEventListener('blur',()=>{validateinputRequerido(passSignIn)});
-//  SignUp
-nameInp.addEventListener('blur',()=>{validateinputRequerido(nameInp)});
-emailInp.addEventListener('blur',()=>{validateinputRequerido(emailInp)});
-passwordInp.addEventListener('blur',()=>{validateinputRequerido(passwordInp)});
-repPassInp.addEventListener('blur',()=>{validateinputRequerido(repPassInp)});
+export function validateAll(code, name, description, category, stock, price, img){
+    if (validateInputReq(code)&&validateInputReq(name)&&validateInputReq(description)&&validatePrice(price)&&validateInputReq(img)&&validateStock(stock)&&validateInputReq(category)) {
+        return true;
+    }else{
+        return false;
+    }
+}
 */
+
+export function validateInputPrice(input) {
+    const regExPrice = /^(\d{1,9}(?:\,\d{1,2})?|\d{1,2}(?:\,\d{1,2})?)$/;
+    if (regExPrice.test(input.value)) {
+      input.className = "form-control is-valid";
+      return true;
+    } else {
+      input.className = "form-control is-invalid";
+      return false;
+    }
+};
+
+export function validateInputUrl(input) {
+    const regExURL = /^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/;
+  
+    if (regExURL.test(input.value)) {
+      input.className = "form-control is-valid";
+      return true;
+    } else {
+      input.className = "form-control is-invalid";
+      return false;
+    }
+};
+
+export function validateInputDescription(input){
+    if (input.value.trim().length >= 10 && input.value.trim().length <= 200) {
+        input.className = "form-control is-valid";
+        return true;
+      } else {
+        input.className = "form-control is-invalid";
+        return false;
+      }
+};
+
+export function validateInputCategory(input){
+    if (input.value.trim().length >= 3 && input.value.trim().length <= 20) {
+        input.className = "form-control is-valid";
+        return true;
+    } else {
+    input.className = "form-control is-invalid";
+    return false;
+    }
+};
+
+export function validateInputStock(input) {
+    const regExStock = /^[0-9]+$/;
+    if (regExStock.test(input.value)) {
+      input.className = "form-control is-valid";
+      return true;
+    } else {
+      input.className = "form-control is-invalid";
+      return false;
+    }
+};
+export function validateInputCode(input) {
+    const regExCode = /^[0-9]+$/;
+    if (regExCode.test(input.value)) {
+      input.className = "form-control is-valid";
+      return true;
+    } else {
+      input.className = "form-control is-invalid";
+      return false;
+    }
+};
+export function validateAll(
+    inputCode,
+    inputName,
+    inputDescription,
+    inputCategory,
+    inputStock,
+    inputPrice,
+    inputImgUrl
+  ) {
+    if (
+      validateInputCode(inputCode) &&
+      validateInputReq(inputName) &&
+      validateInputDescription(inputDescription) &&
+      validateInputCategory(inputCategory) &&
+      validateInputStock(inputStock)&&
+      validateInputPrice(inputPrice) &&
+      validateInputUrl(inputImgUrl)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+};
