@@ -1,5 +1,5 @@
 export function validateInputReq(input){
-    if (input.value.trim().length>3  && input.value.trim().length <= 30) {
+    if (input.value.trim().length>3  && input.value.trim().length <= 200) {
         input.className ="form-control is-valid"
         return true;
     }
@@ -45,6 +45,16 @@ export function validateSignIn(emailSignIn, passSignIn){
         return false;
     }
 }
+//VALIDATES FORM INPUTS PRODUCT
+/*
+export function validateAll(code, name, description, category, stock, price, img){
+    if (validateInputReq(code)&&validateInputReq(name)&&validateInputReq(description)&&validatePrice(price)&&validateInputReq(img)&&validateStock(stock)&&validateInputReq(category)) {
+        return true;
+    }else{
+        return false;
+    }
+}
+*/
 
 export function validateInputPrice(input) {
     const regExPrice = /^(\d{1,9}(?:\,\d{1,2})?|\d{1,2}(?:\,\d{1,2})?)$/;
@@ -99,53 +109,36 @@ export function validateInputStock(input) {
       return false;
     }
 };
-
+export function validateInputCode(input) {
+    const regExCode = /^[0-9]+$/;
+    if (regExCode.test(input.value)) {
+      input.className = "form-control is-valid";
+      return true;
+    } else {
+      input.className = "form-control is-invalid";
+      return false;
+    }
+};
 export function validateAll(
     inputCode,
     inputName,
-    inputPrice,
-    inputCategory,
-    inputImgUrl,
     inputDescription,
-    inputStock
+    inputCategory,
+    inputStock,
+    inputPrice,
+    inputImgUrl
   ) {
     if (
-      validateInputReq(inputCode) &&
+      validateInputCode(inputCode) &&
       validateInputReq(inputName) &&
-      validateInputPrice(inputPrice) &&
-      validateInputCategory(inputCategory) &&
-      validateInputUrl(inputImgUrl) &&
       validateInputDescription(inputDescription) &&
-      validateInputStock(inputStock)
+      validateInputCategory(inputCategory) &&
+      validateInputStock(inputStock)&&
+      validateInputPrice(inputPrice) &&
+      validateInputUrl(inputImgUrl)
     ) {
       return true;
     } else {
       return false;
     }
 };
-
-export function getAleatoryCode(){
-    return window.crypto.randomUUID();
-};
-
-export function getRoleUserLog(){
-    const user = JSON.parse(sessionStorage.getItem("user"));
-  
-    if (user !== null) {
-      return user.role;
-    } else {
-      return "invitado";
-    }
-};
-
-/*
-///Validation
-//  SignIn
-emailSignIn.addEventListener('blur',()=>{validateinputRequerido(emailSignIn)});
-passSignIn.addEventListener('blur',()=>{validateinputRequerido(passSignIn)});
-//  SignUp
-nameInp.addEventListener('blur',()=>{validateinputRequerido(nameInp)});
-emailInp.addEventListener('blur',()=>{validateinputRequerido(emailInp)});
-passwordInp.addEventListener('blur',()=>{validateinputRequerido(passwordInp)});
-repPassInp.addEventListener('blur',()=>{validateinputRequerido(repPassInp)});
-*/
