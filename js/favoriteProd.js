@@ -1,55 +1,50 @@
 // Obtener la tabla de productos
 const tablaProductos = document.querySelector('.table');
+const tableElement = document.querySelector('tbody');
+/*const favoriteProduc = JSON.parse(localStorage.getItem('favoriteProducs')) || []*/
+const arrFavoriteProducts = JSON.parse(localStorage.getItem('favoriteProducts')) || [];
 
-// Función para obtener los productos desde el localStorage
-function obtenerProductosFavoritos() {
-    const favoriteProduc = JSON.parse(localStorage.getItem('favoriteProduc')) || [];
-    return favoriteProduc;
-}
 
 // Función para mostrar los productos favoritos en la tabla
-function mostrarProductosFavoritos() {
-    const favoriteProduc = obtenerProductosFavoritos();
-
+function listFavoriteProduc() {
     // Limpiar la tabla antes de mostrar los productos
-    tablaProductos.innerHTML = '';
-
-    favoriteProduc.forEach((producto, index) => {
-        const fila = `
+    tableElement.innerHTML = '';
+    arrFavoriteProducts.forEach(element => {
+      tableElement.innerHTML +=`
             <tr>
-                <th scope="row">${index + 1}</th>
+                <th scope="row">${element.code}</th>
                 <td class="table__productos">
-                    <img src="${producto.imagen}" alt="${producto.nombre}">
-                    <h6 class="title">${producto.nombre}</h6>
+                    <img src="${element.imgUrl}" alt="${element.name}">
+                    <h6 class="title">${element.name}</h6>
                 </td>
-                <td class="table__price"><p>${producto.precio}</p></td>
+                <td class="table__price"><p>$${element.price}</p></td>
                 <td class="table__cantidad">
-                    <button class="delete btn btn-danger" onclick="quitarDeFavoritos(${index})">Quitar de Favoritos</button>
+                    <button class="delete btn btn-danger" onclick= "deleteFavorite('${element.code}')" >Quitar de Favoritos</button>
                 </td>
             </tr>
         `;
-        tablaProductos.innerHTML += fila;
-    });
+    }); console.log(arrFavoriteProducts)
 
-    // Calcular y mostrar el total
-    const total = favoriteProduc.reduce((acc, producto) => acc + parseFloat(producto.precio.replace('$', '').replace(',', '')), 0);
-    document.querySelector('.itemCartTotal').textContent = `Total: $${total.toFixed(2)}`;
 }
+    // Calcular y mostrar el total
+    /*const total = arrFavoriteProducts.reduce((acc, producto) => acc + parseFloat(producto.precio.replace('$', '').replace(',', '')), 0);
+    document.querySelector('.itemCartTotal').textContent = `Total: $${total.toFixed(2)}`;
 
 // Función para añadir un producto a favoritos
+/*
 function agregarAFavoritos(producto) {
     const favoriteProduc = obtenerProductosFavoritos();
     favoriteProduc.push(producto);
     localStorage.setItem('productosFavoritos', JSON.stringify(favoriteProduc));
     mostrarProductosFavoritos();
-}
+} */
 
 // Función para quitar un producto de favoritos
-function quitarDeFavoritos(index) {
-    const favoriteProduc = obtenerProductosFavoritos();
-    favoriteProduc.splice(index, 1);
-    localStorage.setItem('favoriteProduc', JSON.stringify(favoriteProduc));
-    mostrarProductosFavoritos();
+window.deleteFavorite = function (code) {
+    const newFavoriteProducts = arrFavoriteProducts.filter((element)=> element.code !== code);
+arrFavoriteProducts = newFavoriteProducts;
+    localStorage.setItem('favoriteProducts', JSON.stringify(arrFavoriteProducts)); 
+    listFavoriteProduc();
 }
 
 // Función para simular la compra 
@@ -59,3 +54,4 @@ function comprar() {
     localStorage.removeItem('favoriteProduc');
     mostrarProductosFavoritos();
 }
+listFavoriteProduc();
