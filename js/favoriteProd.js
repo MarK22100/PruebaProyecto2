@@ -2,7 +2,7 @@
 const tablaProductos = document.querySelector('.table');
 const tableElement = document.querySelector('tbody');
 /*const favoriteProduc = JSON.parse(localStorage.getItem('favoriteProducs')) || []*/
-const arrFavoriteProducts = JSON.parse(localStorage.getItem('favoriteProducts')) || [];
+let arrFavoriteProducts = JSON.parse(localStorage.getItem('favoriteProducts')) || [];
 
 
 // Función para mostrar los productos favoritos en la tabla
@@ -27,21 +27,13 @@ function listFavoriteProduc() {
 
 }
     // Calcular y mostrar el total
-    /*const total = arrFavoriteProducts.reduce((acc, producto) => acc + parseFloat(producto.precio.replace('$', '').replace(',', '')), 0);
+    const total = arrFavoriteProducts.reduce((acc, element) => acc + parseFloat(element.price.replace('$', '').replace(',', '')), 0);
     document.querySelector('.itemCartTotal').textContent = `Total: $${total.toFixed(2)}`;
 
-// Función para añadir un producto a favoritos
-/*
-function agregarAFavoritos(producto) {
-    const favoriteProduc = obtenerProductosFavoritos();
-    favoriteProduc.push(producto);
-    localStorage.setItem('productosFavoritos', JSON.stringify(favoriteProduc));
-    mostrarProductosFavoritos();
-} */
 
 // Función para quitar un producto de favoritos
 window.deleteFavorite = function (code) {
-    const newFavoriteProducts = arrFavoriteProducts.filter((element)=> element.code !== code);
+    let newFavoriteProducts = arrFavoriteProducts.filter((element)=> element.code !== code);
 arrFavoriteProducts = newFavoriteProducts;
     localStorage.setItem('favoriteProducts', JSON.stringify(arrFavoriteProducts)); 
     listFavoriteProduc();
@@ -51,7 +43,7 @@ arrFavoriteProducts = newFavoriteProducts;
 function comprar() {
     alert("Compra realizada. Gracias por tu compra!");
 
-    localStorage.removeItem('favoriteProduc');
-    mostrarProductosFavoritos();
+    localStorage.removeItem('favoriteProducts');
+    listFavoriteProduc();
 }
 listFavoriteProduc();
