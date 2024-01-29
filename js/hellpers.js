@@ -80,7 +80,7 @@ export function validateInputUrl(input) {
 };
 
 export function validateInputDescription(input){
-    if (input.value.trim().length >= 10 && input.value.trim().length <= 200) {
+    if (input.value.trim().length >= 10 && input.value.trim().length <= 450) {
         input.className = "form-control is-valid";
         return true;
       } else {
