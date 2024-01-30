@@ -20,8 +20,8 @@
     <header class="sticky-top">
         <nav class="navbar navbar-expand-lg nav navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">
-                    <img src="/img/logorolling.webp" class="" alt="logo" style="height: 50px;">
+                <a class="navbar-brand" href="/index.html">
+                    <img src="/img/logorolling.webp" class="m-2" alt="logo" style="height: 50px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -31,10 +31,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 px-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                            <a class="nav-link" aria-current="page" href="/index.html">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Acerca de nosotros</a>
+                            <a class="nav-link" href="../pages/aboutUs..html">Acerca de nosotros</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link d-none" id="adminUserBtn">Administrar usuarios</a>
@@ -169,38 +169,40 @@
     <main>
         <div class="contenedor1">
             <img class="img" class="img-fluid" src="/img/error404.png" alt="Imagen de error404" title="Error404">
-            <button class="btn-back" class="w-auto h-auto">VOLVER A INICIO</button>
+           <a href="/index.html">  <button  class="btn-back" class="w-auto h-auto">VOLVER A INICIO</button></a>
         </div>
     </main>
     <footer class="bg-dark text-light py-5 text-center">
-      <div class="container mt-4">
-          <div class="row">
-              <!-- Páginas del Navbar -->
-              <div class="col-md my-3">
-                  <h5>Enlaces</h5>
-                  <ul class="list-unstyled">
-                      <li><a href="#">Inicio</a></li>
-                      <li><a href="#">Servicios</a></li>
-                      <li><a href="#">Productos</a></li>
-                      <li><a href="#">Contacto</a></li>
-                  </ul>
+        <div class="container mt-4">
+            <div class="row">
+                <!-- Páginas del Navbar -->
+                <div class="col-md my-3">
+                    <h5 class="text-colour-title">
+                    Enlaces
+                    </h5>
+                    <ul class="list-unstyled">
+                        <li><a class="nav-link" href="../index.html">Inicio</a></li>
+                        <li><a class="nav-link" href="../pages/errorpage.html">Servicios</a></li>
+                        <li><a class="nav-link" href="../pages/errorpage.html">Productos</a></li>
+                        <li><a class="nav-link" href="../pages/aboutUs.html">Contacto</a></li>
+                    </ul>
+                </div>
+               <!-- Logo -->
+              <div class="col-md mt-4">
+               <img src="../img/logorolling.webp" alt="Logo de la empresa" class="img-fluid " style="height: 100px">
               </div>
-             <!-- Logo -->
-            <div class="col-md">
-             <img src="/img/logorolling.webp" alt="Logo de la empresa" class="img-fluid " style="height: 100px">
+                <!-- Formulario de Contacto de la Página -->
+                <div class="col-md my-3">
+                    <h5 class="mb-4 text-colour-title">Contacto de la Página</h5>
+                        <ul class="m-2 list-unstyled">
+                            <li class="m-3">Telefono:  0381 578-3030 </li>
+                            <li class="m-3"> Dirección:  General Paz 576 Piso 9 </li>
+                            <li class="m-3">E-mail:  hi@rollingcode.co </li>
+                        </ul>
+                </div>
             </div>
-              <!-- Formulario de Contacto de la Página -->
-              <div class="col-md my-3">
-                  <h5>Contacto de la Página</h5>
-                      <ul class="list-unstyled">
-                          <li>Telefono: </li>
-                          <li> Dirección </li>
-                          <li>E-mail</li>
-                      </ul>
-              </div>
-          </div>
-      </div>
-  </footer>
+        </div>
+    </footer>>
 
   <!-- Enlace a JS de Bootstrap (jQuery es necesario) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
