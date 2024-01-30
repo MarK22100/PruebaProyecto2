@@ -21,35 +21,42 @@ function detailPage() {
         window.location.href = "/index.html"
     }
     title.innerText = prodSelec.name;
-    category.innerText = prodSelec.category;
+    category.innerText = "CATEGORIA: " + prodSelec.category;
     image.src = prodSelec.imgUrl;
-    price.innerText = prodSelec.price;
+    price.innerText = "$" + prodSelec.price;
     description.innerText = prodSelec.description;
-    stock.innerText = prodSelec.stock;
+    stock.innerText = "STOCK: " + prodSelec.stock;
 }
 
 detailPage();
 
 
-window.addFavProduct = function () {
-
-
-
+window.enabledBtnFav = function() {
+    const sesionCheck = JSON.parse(sessionStorage.getItem('userSesion'));
     const favoriteProduct = arrayProducts.find((element) => {
         return element.code === productId;
     })
-    if (arrFavoriteProducts.includes(favoriteProduct)) {
+    if (sesionCheck == null) {
         Swal.fire({
+            confirmButtonColor: "#ff5e00",
             title: "Ups!!!",
-            text: "Este prodecto ya esta en tu lista de favoritos",
+            text: "Para añadir productos a favoritos debes iniciar sesion!!",
             icon: "info"
         });
     }
-    else {
-        console.log(favoriteProduct);
+    else if(arrFavoriteProducts.includes(favoriteProduct)){
+        Swal.fire({
+            confirmButtonColor: "#ff5e00",
+            title: "Ups!!!",
+            text: "Este producto ya esta en tu lista de favoritos",
+            icon: "info"
+        });
+    }
+    else{
+        let icono = document.createElement("i")
+        icono.className="fa-solid fa-check";
+        addFavorite.appendChild(icono);
         arrFavoriteProducts.push(favoriteProduct);
         localStorage.setItem('favoriteProducts', JSON.stringify(arrFavoriteProducts));
-
     }
 }
-
