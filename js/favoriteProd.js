@@ -11,15 +11,12 @@ function listFavoriteProduc() {
     tableElement.innerHTML = '';
     arrFavoriteProducts.forEach(element => {
       tableElement.innerHTML +=`
-            <tr>
-                <th class="py-auto" scope="row">${element.code}</th>
-                <td class="table__productos">
-                    <img src="${element.imgUrl}" alt="${element.name}">
-                    <h6 class="title">${element.name}</h6>
-                </td>
+            <tr class="table_item">
+            <th class="code">${element.code}</th>
+                <td><h6 class="title">${element.name}</h6></td>
+                <td class="table__productos mx-auto"><img src="${element.imgUrl}" alt="${element.name}"></td>    
                 <td class="table__price"><p>$${element.price}</p></td>
-                <td class="table__cantidad">
-                    <button class="delete btn btn-danger" onclick= "deleteFavorite('${element.code}')" >Quitar de Favoritos</button>
+                <td class="table__cantidad"><button class="delete btn btn-danger" onclick= "deleteFavorite('${element.code}')" >Quitar de Favoritos</button>
                 </td>
             </tr>
         `;
@@ -33,17 +30,29 @@ function listFavoriteProduc() {
 
 // Función para quitar un producto de favoritos
 window.deleteFavorite = function (code) {
-    let newFavoriteProducts = arrFavoriteProducts.filter((element)=> element.code !== code);
-arrFavoriteProducts = newFavoriteProducts;
-    localStorage.setItem('favoriteProducts', JSON.stringify(arrFavoriteProducts)); 
-    listFavoriteProduc();
+    Swal.fire({
+        title: "¿Estas seguro?",
+        text: "Los cambios no se podrán revertir",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Eliminar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+            let newFavoriteProducts = arrFavoriteProducts.filter((element)=> element.code !== code);
+            arrFavoriteProducts = newFavoriteProducts;
+          Swal.fire({
+            title: "Exito",
+            text: "El producto se elimino correctamente",
+            icon: "success",
+          });
+          localStorage.setItem('favoriteProducts', JSON.stringify(arrFavoriteProducts)); 
+          listFavoriteProduc();
+          location.reload();
+        }
+      });
 }
 
-// Función para simular la compra 
-function comprar() {
-    alert("Compra realizada. Gracias por tu compra!");
-
-    localStorage.removeItem('favoriteProducts');
-    listFavoriteProduc();
-}
 listFavoriteProduc();

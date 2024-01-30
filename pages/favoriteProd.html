@@ -36,7 +36,7 @@
                         <a class="nav-link active" aria-current="page" href="/index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/pages/aboutUs.html">Acerca de nosotros</a>
+                        <a class="nav-link" href="/pages/aboutUs..html">Acerca de nosotros</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link d-none" id="adminUserBtn" href="/pages/adminUser.html">Administrar usuarios</a>
@@ -157,12 +157,13 @@
 
     <div class="favorite">
 <div class="table-responsive"> 
-        <table class="table">
+        <table class="table align-middle">
             <thead>
                 <tr class="text-primary">
-                    <th scope="col">Codigo</th>
+                    <th scope="col" class="hide-on-small">Codigo</th>
                     <th scope="col">Productos</th>
-                    <th scope="col" class="hide-on-small">Precio</th>
+                    <th scope="col">Imagen Producto</th>
+                    <th scope="col" class="hide-on-smal">Precio</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -178,7 +179,9 @@
                 <h3 id="itemCartTotal" class="itemCartTotal text-black">Total: 0</h3>
             </div>
             <div class="col d-flex justify-content-end">
-                <button class="btn btn-success" onclick="comprar()">COMPRAR</button>
+                 <a href="/pages/errorpage.html" class="btn btn-dark btn-custom-hoveer btn-custom-colours"  >
+                    Comprar
+                    </a>
             </div>
         </div>
     </div>
@@ -191,26 +194,28 @@
             <div class="row">
                 <!-- Páginas del Navbar -->
                 <div class="col-md my-3">
-                    <h5>Enlaces</h5>
+                    <h5 class="text-colour-title">
+                    Enlaces
+                    </h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Servicios</a></li>
-                        <li><a href="#">Productos</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a class="nav-link" href="../index.html">Inicio</a></li>
+                        <li><a class="nav-link" href="../pages/errorpage.html">Servicios</a></li>
+                        <li><a class="nav-link" href="../pages/errorpage.html">Productos</a></li>
+                        <li><a class="nav-link" href="../pages/aboutUs.html">Contacto</a></li>
                     </ul>
                 </div>
-                <!-- Logo -->
-                <div class="col-md">
-                    <img src="/img/logorolling.webp" alt="Logo de la empresa" class="img-fluid " style="height: 100px">
-                </div>
+               <!-- Logo -->
+              <div class="col-md mt-4">
+               <img src="../img/logorolling.webp" alt="Logo de la empresa" class="img-fluid " style="height: 100px">
+              </div>
                 <!-- Formulario de Contacto de la Página -->
                 <div class="col-md my-3">
-                    <h5>Contacto de la Página</h5>
-                    <ul class="list-unstyled">
-                        <li>Telefono: </li>
-                        <li> Dirección </li>
-                        <li>E-mail</li>
-                    </ul>
+                    <h5 class="mb-4 text-colour-title">Contacto de la Página</h5>
+                        <ul class="m-2 list-unstyled">
+                            <li class="m-3">Telefono:  0381 578-3030 </li>
+                            <li class="m-3"> Dirección:  General Paz 576 Piso 9 </li>
+                            <li class="m-3">E-mail:  hi@rollingcode.co </li>
+                        </ul>
                 </div>
             </div>
         </div>
