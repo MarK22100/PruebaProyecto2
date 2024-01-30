@@ -19,9 +19,8 @@
     height: 12rem;
     object-fit: contain;
     border-radius: 6px;
-    margin-right: 20px;
+    margin-right: 6px;
   }
-
 
   /* Estilo adicional para dispositivos pequeños */
 @media (max-width: 576px) {
@@ -52,6 +51,7 @@
   .hide-on-small {
       display: none;
   }
+}
 
   @media (max-width: 285px) {
     .hide-on-smal {

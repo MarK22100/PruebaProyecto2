@@ -12,14 +12,11 @@ function listFavoriteProduc() {
     arrFavoriteProducts.forEach(element => {
       tableElement.innerHTML +=`
             <tr class="table_item">
-            <th scope="row" class="code">${element.code}</th>
-                <td class="table__productos">
-                    <img src="${element.imgUrl}" alt="${element.name}">
-                    <h6 class="title">${element.name}</h6>
-                </td>
+            <th class="code">${element.code}</th>
+                <td><h6 class="title">${element.name}</h6></td>
+                <td class="table__productos mx-auto"><img src="${element.imgUrl}" alt="${element.name}"></td>    
                 <td class="table__price"><p>$${element.price}</p></td>
-                <td class="table__cantidad">
-                    <button class="delete btn btn-danger" onclick= "deleteFavorite('${element.code}')" >Quitar de Favoritos</button>
+                <td class="table__cantidad"><button class="delete btn btn-danger" onclick= "deleteFavorite('${element.code}')" >Quitar de Favoritos</button>
                 </td>
             </tr>
         `;
