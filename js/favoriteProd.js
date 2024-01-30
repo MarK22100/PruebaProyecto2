@@ -12,7 +12,7 @@ function listFavoriteProduc() {
     arrFavoriteProducts.forEach(element => {
       tableElement.innerHTML +=`
             <tr class="table_item">
-                <th scope="row">${element.code}</th>
+            <th scope="row" class="code">${element.code}</th>
                 <td class="table__productos">
                     <img src="${element.imgUrl}" alt="${element.name}">
                     <h6 class="title">${element.name}</h6>
@@ -58,11 +58,4 @@ window.deleteFavorite = function (code) {
       });
 }
 
-// Función para simular la compra 
-function comprar() {
-    alert("Compra realizada. Gracias por tu compra!");
-
-    localStorage.removeItem('favoriteProducts');
-    listFavoriteProduc();
-}
 listFavoriteProduc();
