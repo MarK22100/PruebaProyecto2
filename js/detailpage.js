@@ -8,6 +8,7 @@ let price = document.getElementById('price');
 let description = document.getElementById('description');
 let stock = document.getElementById('stock');
 let addFavorite = document.getElementById('addFavorite');
+let code = document.getElementById('code');
 
 
 let productId = new URLSearchParams(window.location.search).get('codigo');
@@ -26,6 +27,7 @@ function detailPage() {
     price.innerText = "$" + prodSelec.price;
     description.innerText = prodSelec.description;
     stock.innerText = "STOCK: " + prodSelec.stock;
+    code.innerText = "CODIGO: " + prodSelec.code;
 }
 
 detailPage();
