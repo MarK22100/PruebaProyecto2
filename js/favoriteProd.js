@@ -12,7 +12,7 @@ function listFavoriteProduc() {
     arrFavoriteProducts.forEach(element => {
       tableElement.innerHTML +=`
             <tr>
-                <th scope="row">${element.code}</th>
+                <th class="py-auto" scope="row">${element.code}</th>
                 <td class="table__productos">
                     <img src="${element.imgUrl}" alt="${element.name}">
                     <h6 class="title">${element.name}</h6>

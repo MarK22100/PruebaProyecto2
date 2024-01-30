@@ -38,8 +38,8 @@ export function validateInputsSignUp(nameInp, emailInp, passwordInp){
         return false;
     }
 }
-export function validateSignIn(emailSignIn, passSignIn){
-    if (validateEmail(emailSignIn)&&validatePassword(passSignIn)) {
+export function validateSignIn(emailSignIn){
+    if (validateEmail(emailSignIn)) {
         return true;
     }else{
         return false;
