@@ -11,7 +11,7 @@ function listFavoriteProduc() {
     tableElement.innerHTML = '';
     arrFavoriteProducts.forEach(element => {
       tableElement.innerHTML +=`
-            <tr>
+            <tr class="table_item">
                 <th scope="row">${element.code}</th>
                 <td class="table__productos">
                     <img src="${element.imgUrl}" alt="${element.name}">
@@ -33,10 +33,29 @@ function listFavoriteProduc() {
 
 // Función para quitar un producto de favoritos
 window.deleteFavorite = function (code) {
-    let newFavoriteProducts = arrFavoriteProducts.filter((element)=> element.code !== code);
-arrFavoriteProducts = newFavoriteProducts;
-    localStorage.setItem('favoriteProducts', JSON.stringify(arrFavoriteProducts)); 
-    listFavoriteProduc();
+    Swal.fire({
+        title: "¿Estas seguro?",
+        text: "Los cambios no se podrán revertir",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Eliminar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+            let newFavoriteProducts = arrFavoriteProducts.filter((element)=> element.code !== code);
+            arrFavoriteProducts = newFavoriteProducts;
+          Swal.fire({
+            title: "Exito",
+            text: "El producto se elimino correctamente",
+            icon: "success",
+          });
+          localStorage.setItem('favoriteProducts', JSON.stringify(arrFavoriteProducts)); 
+          listFavoriteProduc();
+          location.reload();
+        }
+      });
 }
 
 // Función para simular la compra 
