@@ -123,7 +123,7 @@ window.signIn = function(){
         emailUser : emailSignIn.value,
         passUser : passSignIn.value 
     }
-    if(validateSignIn(emailSignIn, passSignIn))
+    if(validateSignIn(emailSignIn))
     {
             JSON.parse(sessionStorage.getItem('userSesion'))
                 if (userReg.some((v)=>{
