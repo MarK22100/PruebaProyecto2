@@ -17,7 +17,7 @@ function CrearCards() {
           </a>
        
           <a href="./pages/detailpage.html?codigo=${element.code}" class="btn btn-dark btn-custom-hoveer-negative btn-custom-colours-negative" >
-          Detalle
+          Detalles
           </a>
           </div>
         </div>
