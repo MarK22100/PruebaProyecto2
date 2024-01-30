@@ -21,11 +21,11 @@ function detailPage() {
         window.location.href = "/index.html"
     }
     title.innerText = prodSelec.name;
-    category.innerText = prodSelec.category;
+    category.innerText = "CATEGORIA: " + prodSelec.category;
     image.src = prodSelec.imgUrl;
-    price.innerText = prodSelec.price;
+    price.innerText = "$" + prodSelec.price;
     description.innerText = prodSelec.description;
-    stock.innerText = prodSelec.stock;
+    stock.innerText = "STOCK: " + prodSelec.stock;
 }
 
 detailPage();
@@ -41,7 +41,7 @@ window.addFavProduct = function () {
     if (arrFavoriteProducts.includes(favoriteProduct)) {
         Swal.fire({
             title: "Ups!!!",
-            text: "Este prodecto ya esta en tu lista de favoritos",
+            text: "Este producto ya esta en tu lista de favoritos",
             icon: "info"
         });
     }
@@ -50,6 +50,20 @@ window.addFavProduct = function () {
         arrFavoriteProducts.push(favoriteProduct);
         localStorage.setItem('favoriteProducts', JSON.stringify(arrFavoriteProducts));
 
+    }
+}
+
+window.enabledBtnFav = function() {
+    const sesionCheck = JSON.parse(sessionStorage.getItem('userSesion'));
+    if (sesionCheck!=null) {
+        addFavorite.addEventListener('click', addFavProduct);
+    }
+    else{
+        Swal.fire({
+            title: "Ups!!!",
+            text: "Para añadir productos a favoritos debes iniciar sesion!!",
+            icon: "info"
+        });
     }
 }
 
