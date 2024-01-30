@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ecommerce de accesorios y repuestos de moto" />
+    <meta name="author" content="Grupo N°5" />
+    <meta name="keywords" content="Repuestos de motos" />
+    <!-- Enlace a CSS de Bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/stylesheet.css" />
+    <link rel="stylesheet" href="/css/favoriteProd.css" />
+    <link rel="stylesheet" href="/css/regLogin.css">
+    <link rel="shortcut icon" href="/img/icon.webp" type="image/x-icon">
+    <title>Rolling Moto</title>
+</head>
+
+<body class="bg-body-secondary">
+    <nav class="navbar navbar-expand-lg nav navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/index.html">
+                <img src="/img/logorolling.webp" class="" alt="logo" style="height: 50px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 px-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Acerca de nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="adminUserBtn" href="/pages/adminUser.html">Administrar usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="adminProdBtn" href="/pages/adminProd.html">Administrar productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="prodSelected">Productos favoritos</a>
+                    </li>
+
+                </ul>
+                <button type="button" class="btn btnSignIn" data-bs-toggle="modal" data-bs-target="#signInModal"
+                    id="btnSignIn">
+                    INICIAR SESION
+                </button>
+                <button type="button" class="btn btnSignOut d-none" data-bs-toggle="modal" id="btnSignOut"
+                    onclick="logOut()">
+                    CERRAR SESION
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="containerModal p-0 " id="container">
+                <div class="modal-content bg-body-secondary">
+                    <button type="button" class="btn-close bg-transparent mt-3 ms-auto p-3" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <div class=" form-container sign-up ">
+                        <form id="formSignUp" class="form-signUp">
+                            <h1 class="mt-4">CREAR CUENTA</h1>
+                            <div class="social-icons">
+                                <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                                <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                                <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                            </div>
+                            <span>o crea una cuenta con tu mail</span>
+                            <div class="form_inputs">
+                                <input type="text" id="nameInput" placeholder="Nombre Completo">
+                                <input type="email" id="emailInput" placeholder="Email" required>
+                                <div class="password">
+                                    <input type="password" id="passInput" placeholder="Contraseña" required>
+                                    <img id="passIcon" src="/src/eye-slash.svg" class="" alt="" onclick="pass()">
+                                </div>
+                                <div class="password">
+                                    <input type="password" id="repPassInput" placeholder="Repetir Contraseña" class=""
+                                        required>
+                                    <img id="repPassIcon" src="/src/eye-slash.svg" onclick="repPass()">
+                                </div>
+                            </div>
+                            <button id="btn_signUp" type="button" onclick="createUser()">REGISTRARSE</button>
+                        </form>
+                    </div>
+                    <div class="form-container  sign-in mt-5">
+                        <form class="">
+                            <h1>INICIAR SESION</h1>
+                            <div class="social-icons">
+                                <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                                <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                                <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                            </div>
+                            <span>o inicia sesion con</span>
+                            <div class="form_inputs ">
+                                <input type="email" id="emailSignIn" placeholder="Email" required>
+                                <div class="password">
+                                    <input type="password" id="passSignIng" placeholder="Contraseña" required>
+                                    <img id="passSignIngIcon" src="/src/eye-slash.svg" onclick="passSg()">
+                                </div>
+                                <a data-bs-toggle="modal" data-bs-target="#restorePass">Olvidaste tu contraseña?</a>
+                            </div>
+                            <button id="btn_signIn" type="button" onclick="signIn()">Iniciar Sesion</button>
+                        </form>
+                    </div>
+                    <div class="toggle-container">
+                        <div class="toggle">
+                            <div class="toggle-panel toggle-left">
+                                <p>Si ya tienes una cuenta</p>
+                                <button class="hidden" id="login">INICIAR SESION</button>
+                            </div>
+                            <div class="toggle-panel toggle-right">
+                                <p>Si no estas registrado</p>
+                                <button class="hidden" id="register">CREAR CUENTA</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="restorePass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Recuperar contraseña</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body justify-content-center">
+                        <p>Ingrese el correo con el que sea registrado</p>
+                        <input type="email" name="email" autocomplete="none" class="p-1" placeholder="Email" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <div class="favorite">
+<div class="table-responsive"> 
+        <table class="table">
+            <thead>
+                <tr class="text-primary">
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Productos</th>
+                    <th scope="col" class="hide-on-small">Precio</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody class="table__body" id="tableElement"> 
+                
+            </tbody>
+        </table>
+    </div>
+    
+        <br><br>
+        <div class="row mx-4">
+            <div class="col">
+                <h3 id="itemCartTotal" class="itemCartTotal text-black">Total: 0</h3>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <button class="btn btn-success" onclick="comprar()">COMPRAR</button>
+            </div>
+        </div>
+    </div>
+    
+    <br><br>
+
+
+    <footer class="bg-dark text-light py-5 text-center">
+        <div class="container mt-4">
+            <div class="row">
+                <!-- Páginas del Navbar -->
+                <div class="col-md my-3">
+                    <h5>Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Servicios</a></li>
+                        <li><a href="#">Productos</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                <!-- Logo -->
+                <div class="col-md">
+                    <img src="/img/logorolling.webp" alt="Logo de la empresa" class="img-fluid " style="height: 100px">
+                </div>
+                <!-- Formulario de Contacto de la Página -->
+                <div class="col-md my-3">
+                    <h5>Contacto de la Página</h5>
+                    <ul class="list-unstyled">
+                        <li>Telefono: </li>
+                        <li> Dirección </li>
+                        <li>E-mail</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Enlace a JS de Bootstrap (jQuery es necesario) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script type="module" src="/js/regLogin.js"></script>
+    <script type="module" src="/js/favoriteProd.js"></script>
+    <script src="/js/jquery-3.2.1.js"></script>
+    <script src="/js/filtro.js"></script>
+
+</body>
+</html>
