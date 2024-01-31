@@ -4,7 +4,6 @@ const tableElement = document.querySelector('tbody');
 /*const favoriteProduc = JSON.parse(localStorage.getItem('favoriteProducs')) || []*/
 let arrFavoriteProducts = JSON.parse(localStorage.getItem('favoriteProducts')) || [];
 
-
 // Función para mostrar los productos favoritos en la tabla
 function listFavoriteProduc() {
     // Limpiar la tabla antes de mostrar los productos
