@@ -130,24 +130,25 @@
     <!-- Modal -->
     <div class="modal fade" id="restorePass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
-        <form>
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Recuperar contraseña</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body justify-content-center">
-              <p>Ingrese el correo con el que sea registrado</p>
-              <input type="email" name="email" autocomplete="none" class="p-1" placeholder="Email" required>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="submit" class="btn btn-primary">Enviar</button>
-            </div>
-          </div>
-        </form>
+        <form action="/pages/errorpage.html">
+        <div class="modal-content mx-5 bg-dark text-bg-dark">
+         <div class="modal-header">
+             <h1 class="modal-title fs-4" id="exampleModalLabel">Recuperar contraseña</h1>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body justify-content-center">
+             <p>Ingrese el correo con el que sea registrado</p>
+             <p>Y te enviaremos un correo para continuar</p>
+             <input type="email" name="email" autocomplete="none" class="p-2" placeholder="Email" required>
+         </div>
+         <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+         <button type="submit" class="btn btn-custom-hoveer btn-custom-colours text-light">Enviar</button>
+         </div>
+         </div>
+          </form>
       </div>
-    </div>
+     </div>
   </header>
   <main class="flex-grow-1 container">
     <div class="container px-4 px-lg-5 my-5">
