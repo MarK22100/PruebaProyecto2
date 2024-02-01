@@ -8,20 +8,20 @@
   <meta name="author" content="Grupo N°5" />
   <meta name="keywords" content="Repuestos de motos" />
   <!-- Enlace a CSS de Bootstrap -->
-  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <link rel="stylesheet" href="../css/stylesheet.css" />
-  <link rel="stylesheet" href="./css/regLogin.css">
-  <link rel="stylesheet" href="../css/StyleAboutUs.css">
+  <link rel="stylesheet" href="/css/stylesheet.css" />
+  <link rel="stylesheet" href="/css/regLogin.css">
   <link rel="shortcut icon" href="../img/icon.webp" type="image/x-icon">
   <title>Rolling Moto</title>
 </head>
+<header>
 
-<body class="bg-body-secondary">
+  <body class="bg-body-secondary">
   <nav class="navbar navbar-expand-lg nav navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="/index.html">
-          <img src="../img/logorolling.webp" class="" alt="logo" style="height: 50px;">
+          <img src="/img/logorolling.webp" class="mx-2" alt="logo" style="height: 50px;">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,21 +30,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 px-3">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/index.html">Inicio</a>
+                    <a class="nav-link " aria-current="page" href="/index.html">Inicio</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="/pages/aboutUs.html">Acerca de nosotros</a>
+                    <a class="nav-link active" href="/pages/aboutUs.html">Acerca de nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-none" id="adminUserBtn" href="/pages/adminUser.html">Administrar usuarios</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-none " id="adminProdBtn" href="/pages/adminProd.html">Administrar productos</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link d-none" id="adminUserBtn" href="/pages/adminUser.html">Administrar usuarios</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link d-none" id="adminProdBtn" href="/pages/adminProd.html">Administrar productos</a>
+                <a class="nav-link d-none" id="prodSelected" href="/pages/favoriteProd.html">Productos favoritos</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link d-none" id="prodSelected" href="/pages/favoriteProd.html">Productos favoritos</a>
-          </li>
-              
             </ul>
             <button type="button" class="btn btnSignIn" data-bs-toggle="modal" data-bs-target="#signInModal" id="btnSignIn">
               INICIAR SESION
@@ -55,7 +54,6 @@
         </div>
     </div>
   </nav>
-  <header>
     <!-- Modal -->
     <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog ">
@@ -67,10 +65,10 @@
               <form id="formSignUp" class="form-signUp">
                 <h1 class="mt-4">CREAR CUENTA</h1>
                 <div class="social-icons">
-                  <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                  <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                  <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                  <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                  <a href="/pages/errorpage.html" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                  <a href="/pages/errorpage.html" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                  <a href="/pages/errorpage.html" class="icon"><i class="fa-brands fa-github"></i></a>
+                  <a href="/pages/errorpage.html" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>o crea una cuenta con tu mail</span>
                 <div class="form_inputs">
@@ -92,10 +90,10 @@
               <form class="">
                 <h1>INICIAR SESION</h1>
                 <div class="social-icons">
-                  <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                  <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                  <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                  <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                  <a href="/pages/errorpage.html" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                  <a href="/pages/errorpage.html" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                  <a href="/pages/errorpage.html" class="icon"><i class="fa-brands fa-github"></i></a>
+                  <a href="/pages/errorpage.html" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>o inicia sesion con</span>
                 <div class="form_inputs ">
@@ -104,7 +102,7 @@
                     <input type="password" id="passSignIng" placeholder="Contraseña" required>
                     <img id="passSignIngIcon" src="/src/eye-slash.svg" onclick="passSg()">
                   </div>
-                  <a data-bs-toggle="modal" data-bs-target="#restorePass">Olvidaste tu contraseña?</a>
+                  <a class="py-1 fs-6 fw-medium" data-bs-toggle="modal" data-bs-target="#restorePass">Olvidaste tu contraseña?</a>
                 </div>
                 <button id="btn_signIn" type="button" onclick="signIn()">Iniciar Sesion</button>
               </form>
@@ -147,7 +145,7 @@
           </form>
       </div>
      </div>
-  </header>
+</header>
   
   <main>
     <section>
