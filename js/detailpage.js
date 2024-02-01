@@ -1,4 +1,4 @@
-const arrFavoriteProducts = JSON.parse(localStorage.getItem('favoriteProducts'));
+const arrFavoriteProducts = JSON.parse(localStorage.getItem('favoriteProducts')) || [];
 const arrayProducts = JSON.parse(localStorage.getItem("products")) || [];
 
 let title = document.getElementById('title');
@@ -8,6 +8,7 @@ let price = document.getElementById('price');
 let description = document.getElementById('description');
 let stock = document.getElementById('stock');
 let addFavorite = document.getElementById('addFavorite');
+let code = document.getElementById('code');
 
 
 let productId = new URLSearchParams(window.location.search).get('codigo');
@@ -21,33 +22,43 @@ function detailPage() {
         window.location.href = "/index.html"
     }
     title.innerText = prodSelec.name;
-    category.innerText = prodSelec.category;
+    category.innerText = "CATEGORIA: " + prodSelec.category;
     image.src = prodSelec.imgUrl;
-    price.innerText = prodSelec.price;
+    price.innerText = "$" + prodSelec.price;
     description.innerText = prodSelec.description;
-    stock.innerText = prodSelec.stock;
+    stock.innerText = "STOCK: " + prodSelec.stock;
+    code.innerText = "CODIGO: " + prodSelec.code;
 }
 
 detailPage();
 
 
-window.addFavProduct = function() {
-
+window.enabledBtnFav = function() {
+    const sesionCheck = JSON.parse(sessionStorage.getItem('userSesion'));
     const favoriteProduct = arrayProducts.find((element) => {
         return element.code === productId;
     })
-     
-         if (arrFavoriteProducts.includes(favoriteProduct)) {
-             Swal.fire({
-                 title: "Ups??",
-                 text: "Este prodecto ya esta en tu lista de favoritos",
-                 icon: "info"
-             });
-         }
-         else {
-
-            arrFavoriteProducts.push(favoriteProduct);
-            localStorage.setItem('favoriteProducts', JSON.stringify(arrFavoriteProducts));
-
-        }
+    if (sesionCheck == null) {
+        Swal.fire({
+            confirmButtonColor: "#ff5e00",
+            title: "Ups!!!",
+            text: "Para añadir productos a favoritos debes iniciar sesion!!",
+            icon: "info"
+        });
+    }
+    else if(arrFavoriteProducts.includes(favoriteProduct)){
+        Swal.fire({
+            confirmButtonColor: "#ff5e00",
+            title: "Ups!!!",
+            text: "Este producto ya esta en tu lista de favoritos",
+            icon: "info"
+        });
+    }
+    else{
+        let icono = document.createElement("i")
+        icono.className="fa-solid fa-check";
+        addFavorite.appendChild(icono);
+        arrFavoriteProducts.push(favoriteProduct);
+        localStorage.setItem('favoriteProducts', JSON.stringify(arrFavoriteProducts));
+    }
 }

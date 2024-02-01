@@ -30,12 +30,20 @@ const loginBtn = document.getElementById('login');
 
 checkSesion()
 export function checkSesion(){
-    const adminSignIn = JSON.parse(sessionStorage.getItem('userSesion'))
+    const sesionSignIn = JSON.parse(sessionStorage.getItem('userSesion'))
+    if (sesionSignIn == null) {
+        adminUserBtn.href='/index.html',
+        adminProdBtn.href='/index.html',
+        prodSelected.href='/index.html'
+        
+    }
+    if (sesionSignIn!=null) {
+        btnSignIn.className='d-none';
+        btnSignOut.className='btn btnSignOut';
 
-    if (adminSignIn!=null) {
-        if (adminSignIn.emailUser === "admin@example.com") {
-            document.getElementById('btnSignIn').className='d-none';
-            document.getElementById('btnSignOut').className='btn btnSignOut';
+        if (sesionSignIn.emailUser === "admin@example.com") {
+            btnSignIn.className='d-none';
+            btnSignOut.className='btn btnSignOut';
             prodSelected.className='nav-link';
             adminProdBtn.className='nav-link';
             adminUserBtn.className='nav-link';
@@ -48,13 +56,10 @@ export function checkSesion(){
             }
         }
         
-    const user = JSON.parse(sessionStorage.getItem('userSesion'));
-    if (user!==null) {
-        document.getElementById('btnSignIn').className='d-none';
-        document.getElementById('btnSignOut').className='btn btnSignOut';
-    }
-    }
-// Función para verificar si el usuario administrador ya existe
+    
+
+}
+
 function adminExists(usersAdmin) {
     return usersAdmin.some(user => user.nameUser === 'admin');
 }
@@ -84,6 +89,8 @@ window.createUser = function(){
             return v.emailUser === emailInp.value;
         })) {
             Swal.fire({
+                confirmButtonColor: "#ff5e00",
+                iconColor: "#ff5e00",
                 icon: "info",
                 title: "Revisar...",
                 text: "Usuario ya registrado"
@@ -91,6 +98,8 @@ window.createUser = function(){
         }
         else if(passwordInp.value !== repPassInp.value){
             Swal.fire({
+                confirmButtonColor: "#ff5e00",
+                iconColor: "#ff5e00",
                 icon: "info",
                 title: "Revisar...",
                 text: "La contraseñas no coinciden"
@@ -100,6 +109,7 @@ window.createUser = function(){
             userReg.push(newUser)
             localStorage.setItem('userReg',JSON.stringify(userReg));
             Swal.fire({
+                confirmButtonColor: "#ff5e00",
                 icon: "success",
                 title: "Listo!",
                 text: "Usuario registrado"
@@ -109,6 +119,8 @@ window.createUser = function(){
     }
     else{
         Swal.fire({
+            confirmButtonColor: "#ff5e00",
+            iconColor: "#ff5e00",
             icon: "info",
             title: "Oops...",
             text: "Revisar o completar los datos"
@@ -123,7 +135,7 @@ window.signIn = function(){
         emailUser : emailSignIn.value,
         passUser : passSignIn.value 
     }
-    if(validateSignIn(emailSignIn, passSignIn))
+    if(validateSignIn(emailSignIn))
     {
             JSON.parse(sessionStorage.getItem('userSesion'))
                 if (userReg.some((v)=>{
@@ -133,6 +145,7 @@ window.signIn = function(){
                 prodSelected.className='nav-link';
                 checkSesion()
                 Swal.fire({
+                    confirmButtonColor: "#ff5e00",
                     icon: "success",
                     text: "Inicio de sesion exitoso!",
                   });
@@ -147,6 +160,7 @@ window.signIn = function(){
                     sessionStorage.setItem('userSesion',JSON.stringify(userSesion));
                     checkSesion()
                     Swal.fire({
+                        confirmButtonColor: "#ff5e00",
                         icon: "success",
                         text: "Inicio de sesion exitoso!",
                       });
@@ -156,6 +170,8 @@ window.signIn = function(){
                 }
                 else{
                     Swal.fire({
+
+                        confirmButtonColor: "#ff5e00",
                         icon: "error",
                         text: "Revisa usuario o contraseña",
                       });
@@ -163,6 +179,8 @@ window.signIn = function(){
     }
     else{
         Swal.fire({
+            iconColor: "#ff5e00",
+            confirmButtonColor: "#ff5e00",
             icon: "info",
             text: "Todos los campos son obligatorios",
           });
@@ -248,8 +266,34 @@ window.passSg = function(){
     }
 }
 window.logOut = function(){
-    sessionStorage.clear()
-    setTimeout(()=>{
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        title: "Desea cerrar sesion?",
+        text: "Si cierra sesion se eliminara sus productos favoritos",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, Cerrar Sesion!",
+        cancelButtonText: "No, Mantener sesion iniciada!",
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire({
+            title: "Listo!!!",
+            text: "Sesion finalizada",
+            icon: "success",
+            confirmButtonColor: "#ff5e00",
+        });
+        localStorage.removeItem('favoriteProducts')
+         sessionStorage.clear()
+         setTimeout(()=>{
         window.location ="/index.html";
-    },200)
+    },1500)
+}});
+    
 }

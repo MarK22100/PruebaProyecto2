@@ -43,3 +43,18 @@
     }
   }
  
+  .btn-color {
+    color: #fcfcfc;
+    background-color: #ff5e00;
+    border: #ff5e00;
+    cursor: pointer;
+    /* Cambia el color de fondo al pasar el cursor */
+  }
+
+  .btn-color:hover{
+    color: #ff5e00;
+    background-color: #fcfcfc;
+    border: #ff5e00 solid 1px;
+  }
+
+  
