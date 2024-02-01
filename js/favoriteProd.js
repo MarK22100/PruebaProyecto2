@@ -1,3 +1,5 @@
+
+
 // Obtener la tabla de productos
 const tablaProductos = document.querySelector('.table');
 const tableElement = document.querySelector('tbody');

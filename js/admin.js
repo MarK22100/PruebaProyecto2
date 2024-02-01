@@ -7,7 +7,7 @@ import {
     validateInputStock,
     validateAll
   } from "./hellpers.js";
-  
+
 let arrayProducts = JSON.parse(localStorage.getItem("products")) || [];
 let bodyTabla = document.querySelector("tbody");
 let inputCode = document.getElementById("code");

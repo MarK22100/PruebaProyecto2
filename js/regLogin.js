@@ -30,7 +30,7 @@ const loginBtn = document.getElementById('login');
 
 checkSesion()
 export function checkSesion(){
-    const sesionSignIn = JSON.parse(sessionStorage.getItem('userSesion'))
+    const sesionSignIn = JSON.parse(sessionStorage.getItem('userSesion'));
     if (sesionSignIn == null) {
         adminUserBtn.href='/index.html',
         adminProdBtn.href='/index.html',

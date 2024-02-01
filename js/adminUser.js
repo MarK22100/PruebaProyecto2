@@ -1,3 +1,5 @@
+
+
 let userReg = JSON.parse(localStorage.getItem('userReg')) || [];
 
 let usersAdmin = JSON.parse(localStorage.getItem('usersAdmin')) || [];
@@ -10,7 +12,6 @@ let tableUsersAdmin = document.getElementById('tableAdmins')
 
 listUserRegister();
 listUserAdmmin();
-
 
 function listUserRegister(){
     tableUsers.innerHTML="";

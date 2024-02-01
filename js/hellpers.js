@@ -142,3 +142,10 @@ export function validateAll(
       return false;
     }
 };
+export function sesionBloqAdmin(){
+  const sesionSignIn = JSON.parse(sessionStorage.getItem('userSesion'));
+  if(sesionSignIn == null){
+    location.reload();
+    window.location.href="/index.html";
+  }
+}
