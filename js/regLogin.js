@@ -117,6 +117,7 @@ window.createUser = function(){
             LimpiaFormulario()
         }
     }
+    /*
     else{
         Swal.fire({
             confirmButtonColor: "#ff5e00",
@@ -126,7 +127,7 @@ window.createUser = function(){
             text: "Revisar o completar los datos"
           });
     }
-
+*/
 }
 
 //SignIn User
