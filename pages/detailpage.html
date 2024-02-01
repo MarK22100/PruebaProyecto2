@@ -58,7 +58,6 @@
         </div>
       </div>
     </nav>
-
     <!-- Modal -->
     <div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog ">
@@ -131,46 +130,27 @@
     <!-- Modal -->
     <div class="modal fade" id="restorePass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
-        <form>
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Recuperar contraseña</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body justify-content-center">
-              <p>Ingrese el correo con el que sea registrado</p>
-              <input type="email" name="email" autocomplete="none" class="p-1" placeholder="Email" required>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="submit" class="btn btn-primary">Enviar</button>
-    </section>
-    <main class="flex-grow-1 container">
-    </main>
-    <footer class="bg-dark text-light text-center ">
-      <div class="container mt-4">
-          <div class="row">
-              <!-- Páginas del Navbar -->
-              <div class="col-md my-3">
-                  <h5>Enlaces</h5>
-                  <ul class="list-unstyled">
-                      <li><a href="#">Inicio</a></li>
-                      <li><a href="#">Servicios</a></li>
-                      <li><a href="#">Productos</a></li>
-                      <li><a href="#">Contacto</a></li>
-                  </ul>
-              </div>
-             <!-- Logo -->
-            <div class="col-md">
-             <img src="/img/logorolling.webp" alt="Logo de la empresa" class="img-fluid " style="height: 100px">
-            </div>
-          </div>
-        </form>
+        <form action="/pages/errorpage.html">
+        <div class="modal-content mx-5 bg-dark text-bg-dark">
+         <div class="modal-header">
+             <h1 class="modal-title fs-4" id="exampleModalLabel">Recuperar contraseña</h1>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body justify-content-center">
+             <p>Ingrese el correo con el que sea registrado</p>
+             <p>Y te enviaremos un correo para continuar</p>
+             <input type="email" name="email" autocomplete="none" class="p-2" placeholder="Email" required>
+         </div>
+         <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+         <button type="submit" class="btn btn-custom-hoveer btn-custom-colours text-light">Enviar</button>
+         </div>
+         </div>
+          </form>
       </div>
-    </div>
+     </div>
   </header>
   <main class="flex-grow-1 container">
-
     <div class="container px-4 px-lg-5 my-5">
       <div class="row column-gap-5">
         <div class="col-md-6 pe-5">
@@ -179,9 +159,10 @@
         <div class="col-md-5 ps-5">
           <h1 id="title" class="display-5 fw-bolder"></h1>
           <div class="fs-5 mb-5">
-            <p class="fw-bolder fs-2" id="price">$</p>
-            <p id="category">CATEGORIA:</p>
-            <p id="stock">STOCK:</p>
+            <p class="fw-bolder fs-2" id="price"></p>
+            <p id="category"></p>
+            <p id="stock"></p>
+            <p id="code"></p>
           </div>
           <div>
             <p id="description" class="lead "></p>
@@ -224,7 +205,6 @@
       </div>
     </div>
   </footer>
-
   <!-- Enlace a JS de Bootstrap (jQuery es necesario) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -234,5 +214,4 @@
   <script src="/js/filtro.js"></script>
   <script type="module" src="/js/detailpage.js"></script>
 </body>
-
 </html>
