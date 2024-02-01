@@ -45,16 +45,7 @@ export function validateSignIn(emailSignIn){
         return false;
     }
 }
-//VALIDATES FORM INPUTS PRODUCT
-/*
-export function validateAll(code, name, description, category, stock, price, img){
-    if (validateInputReq(code)&&validateInputReq(name)&&validateInputReq(description)&&validatePrice(price)&&validateInputReq(img)&&validateStock(stock)&&validateInputReq(category)) {
-        return true;
-    }else{
-        return false;
-    }
-}
-*/
+
 
 export function validateInputPrice(input) {
     const regExPrice = /^(\d{1,9}(?:\,\d{1,2})?|\d{1,2}(?:\,\d{1,2})?)$/;
@@ -142,3 +133,10 @@ export function validateAll(
       return false;
     }
 };
+export function sesionBloqAdmin(){
+  const sesionSignIn = JSON.parse(sessionStorage.getItem('userSesion'));
+  if(sesionSignIn == null){
+    location.reload();
+    window.location.href="/index.html";
+  }
+}

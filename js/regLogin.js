@@ -30,7 +30,7 @@ const loginBtn = document.getElementById('login');
 
 checkSesion()
 export function checkSesion(){
-    const sesionSignIn = JSON.parse(sessionStorage.getItem('userSesion'))
+    const sesionSignIn = JSON.parse(sessionStorage.getItem('userSesion'));
     if (sesionSignIn == null) {
         adminUserBtn.href='/index.html',
         adminProdBtn.href='/index.html',
@@ -117,6 +117,7 @@ window.createUser = function(){
             LimpiaFormulario()
         }
     }
+    /*
     else{
         Swal.fire({
             confirmButtonColor: "#ff5e00",
@@ -126,7 +127,7 @@ window.createUser = function(){
             text: "Revisar o completar los datos"
           });
     }
-
+*/
 }
 
 //SignIn User
