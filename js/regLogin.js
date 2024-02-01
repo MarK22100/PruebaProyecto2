@@ -38,12 +38,12 @@ export function checkSesion(){
         
     }
     if (sesionSignIn!=null) {
-        document.getElementById('btnSignIn').className='d-none';
-        document.getElementById('btnSignOut').className='btn btnSignOut';
+        btnSignIn.className='d-none';
+        btnSignOut.className='btn btnSignOut';
 
         if (sesionSignIn.emailUser === "admin@example.com") {
-            document.getElementById('btnSignIn').className='d-none';
-            document.getElementById('btnSignOut').className='btn btnSignOut';
+            btnSignIn.className='d-none';
+            btnSignOut.className='btn btnSignOut';
             prodSelected.className='nav-link';
             adminProdBtn.className='nav-link';
             adminUserBtn.className='nav-link';
